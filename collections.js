@@ -11,7 +11,7 @@ const setToArr = (arr) => {
 };
 
 const setToStr = (arr) => {
-  arrToStr(setToArr(arr));
+  return arrToStr(setToArr(arr));
 };
 
 const strToArr = (str) => {
@@ -63,3 +63,4 @@ const superTypeOf = (n) => {
     return 'Function';
   }
 };
+console.log(setToStr([1, 'ctx', 3]));
