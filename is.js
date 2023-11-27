@@ -27,7 +27,7 @@ is.arr = (arr) => {
 };
 
 is.obj = (obj) => {
-  return typeof obj === 'object' && !Array.isArray(n) && obj !== null;
+  return typeof obj === 'object' && !Array.isArray(obj) && obj !== null;
 };
 
 is.fun = (fun) => {
