@@ -1,9 +1,11 @@
 const more = (e) => {
-  return e++;
+  e++;
+  return e;
 };
 
 const less = (e) => {
-  return e--;
+  e--;
+  return e;
 };
 
 const add = (var1, var2) => {
