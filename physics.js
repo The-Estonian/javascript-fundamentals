@@ -5,5 +5,7 @@ const getAcceleration = (e) => {
     return e.Δv / e.Δt;
   } else if ('d' in e && 't' in e) {
     return (2 * e.d) / (e.t * e.t);
+  } else {
+    return 'impossible';
   }
 };
