@@ -8,11 +8,12 @@ const sign = (n) => {
   }
 };
 
-const sameSign = (var1, var2) => {
-  input1 = sign(var1);
-  input2 = sign(var2);
-  if (input1 == input2) {
+const sameSign = (n1, n2) => {
+  const firstVar = sign(n1);
+  const secondVar = sign(n2);
+  if (firstVar == secondVar) {
     return true;
   }
   return false;
 };
+console.log(sameSign(-2, -1));
