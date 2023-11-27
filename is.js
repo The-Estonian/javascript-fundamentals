@@ -7,7 +7,7 @@ is.nan = (n) => {
 };
 
 is.str = (n) => {
-  return typeof n === 'string' || n instanceof String;
+  return typeof n === 'string';
 };
 
 is.bool = (n) => {
