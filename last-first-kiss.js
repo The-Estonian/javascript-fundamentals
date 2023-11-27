@@ -7,5 +7,5 @@ const last = (arr) => {
 };
 
 const kiss = (arr) => {
-  return [last[arr], first[arr]];
+  return [last(arr), first(arr)];
 };
