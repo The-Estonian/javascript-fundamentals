@@ -3,7 +3,7 @@ is.num = (n) => {
 };
 
 is.nan = (n) => {
-  return isNan(n);
+  return Number.isNan(n);
 };
 
 is.str = (n) => {
