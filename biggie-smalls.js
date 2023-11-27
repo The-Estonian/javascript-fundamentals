@@ -1,2 +1,3 @@
-const smalls = Number.MIN_VALUE;
-const biggie = Number.MAX_VALUE;
+const smalls = Number.MIN_VALUE - 1;
+const biggie = Number.MAX_VALUE + 1;
+console.log(biggie);
