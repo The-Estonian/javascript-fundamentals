@@ -27,11 +27,11 @@ is.arr = (arr) => {
 };
 
 is.obj = (obj) => {
-  return typeof n === 'object';
+  return typeof obj === 'object';
 };
 
 is.fun = (fun) => {
-  return typeof n === 'function';
+  return typeof fun === 'function';
 };
 
 is.truthy = (item) => {
