@@ -1,3 +1,3 @@
 const concatStr = (arg1, arg2) => {
-  return arg1 + arg2;
+  return String(arg1) + String(arg2);
 };
