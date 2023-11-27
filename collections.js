@@ -27,7 +27,7 @@ const mapToObj = (dict) => {
 };
 
 const objToArr = (object) => {
-  return new Map(Object.values(object));
+  return Object.values(object);
 };
 
 const objToMap = (object) => {
