@@ -1,8 +1,8 @@
 const get = (key) => {
-  return this.obj[key];
+  return this.Object[key];
 };
 
 const set = (key, value) => {
-  this.obj[key] = value;
+  this.Object[key] = value;
   return value;
 };
