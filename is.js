@@ -1,5 +1,5 @@
 is.num = (n) => {
-  return typeof n === 'number' && isFinite(n);
+  return typeof n === 'number';
 };
 
 is.nan = (n) => {
