@@ -19,7 +19,7 @@ is.undef = (n) => {
 };
 
 is.def = (n) => {
-  return !is.undefined(n);
+  return !is.undef(n);
 };
 
 is.arr = (arr) => {
