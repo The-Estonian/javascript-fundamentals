@@ -23,7 +23,7 @@ const strToSet = (str) => {
 };
 
 const mapToObj = (dict) => {
-  return Objet.fromEntries(dict);
+  return Object.fromEntries(dict);
 };
 
 const objToArr = (object) => {
@@ -63,4 +63,3 @@ const superTypeOf = (n) => {
     return 'Function';
   }
 };
-console.log(setToStr([1, 'ctx', 3]));
