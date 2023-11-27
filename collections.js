@@ -47,7 +47,7 @@ const superTypeOf = (n) => {
     return 'Map';
   } else if (n instanceof Set) {
     return 'Set';
-  } else if (typeof n === 'object') {
+  } else if (typeof n === 'object' && !Array.isArray(n)) {
     return 'Object';
   } else if (typeof n === 'string') {
     return 'String';
@@ -63,3 +63,5 @@ const superTypeOf = (n) => {
     return 'Function';
   }
 };
+
+console.log(superTypeOf([]));
