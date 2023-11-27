@@ -1,4 +1,4 @@
-const str = New.String();
-const num = New.Integer();
-const bool = New.Boolean();
+const str = "";
+const num = 1;
+const bool = true;
 const undef = undefined;
