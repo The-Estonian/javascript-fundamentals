@@ -14,4 +14,6 @@ const nested = {
     bool: false,
   },
 };
+Object.freeze(arr);
 Object.freeze(nested);
+Object.freeze(obj);
