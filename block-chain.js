@@ -4,7 +4,7 @@ const blockChain = (data, prev) => {
   }
   return {
     index: prev.index + 1,
-    hash: hashCode(String(prev.index + 1) + prev.hash + JSON.stringify(data)),
+    hash: hashCode((prev.index + 1).toString() + prev.hash + JSON.stringify(data)),
     data: data,
     prev: prev,
     chain: (data) => {
