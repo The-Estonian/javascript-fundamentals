@@ -20,11 +20,20 @@ const multiply = (a, b) => {
 
 const divide = (a, b) => {
   var returnSum = a;
+  var trigger = false;
+  if (a < 0) {
+    a = 0 - a;
+    trigger = !trigger;
+  }
+  if (b < 0) {
+    b = 0 - b;
+    trigger = !trigger;
+  }
   for (let index = 0; index < a; index++) {
     if (returnSum >= b) {
       returnSum -= b;
     } else {
-      return index;
+      return index - index - index;
     }
   }
 };
@@ -39,3 +48,5 @@ const modulo = (a, b) => {
     }
   }
 };
+
+console.log(divide(123, -22));
