@@ -1,5 +1,5 @@
 const repeat = (str, n) => {
-  returnStr = '';
+  var returnStr = '';
   for (let index = 0; index < n; index++) {
     returnStr += str;
   }
