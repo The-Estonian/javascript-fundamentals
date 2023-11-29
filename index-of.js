@@ -7,9 +7,9 @@ const indexOf = (arr, value, index = 0) => {
   return -1;
 };
 
-const lastIndexOf = (arr, value, index = 0) => {
+const lastIndexOf = (arr, value, ind = arr.length) => {
   var lastIndex = 0;
-  for (index; index < arr.length; index++) {
+  for (let index = 0; index < ind; index++) {
     if (arr[index] == value) {
       lastIndex = index;
     }
@@ -25,3 +25,5 @@ const includes = (arr, value) => {
     return false;
   }
 };
+
+console.log(lastIndexOf(['t', 0, 0, 't'], 't', 2));
