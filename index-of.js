@@ -19,12 +19,13 @@ const lastIndexOf = (arr, value, ind = arr.length) => {
 
 const includes = (arr, value) => {
   for (let index = 0; index < arr.length; index++) {
-    if (arr[index] == value) {
+    if (arr[index] === value) {
       return true;
     }
-    return false;
   }
+  return false;
 };
 // console.log(lastIndexOf(['t', 0, 0, 't'], 't', 2));
 // console.log(lastIndexOf([0, 0, 't', 't'], 't', 3));
 // console.log(lastIndexOf('bigArray', {}));
+// console.log(includes([1, 2, 3, 4, 5, 4, 3, 2, 1], 2));
