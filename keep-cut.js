@@ -19,6 +19,9 @@ const keepLast = (str) => {
 };
 
 const keepFirstLast = (str) => {
+  if (str.length < 4) {
+    return str;
+  }
   return keepFirst(str) + keepLast(str);
 };
 
@@ -28,3 +31,4 @@ console.log(cutFirstLast('abcdefghij'));
 console.log(keepFirst('abcdefghij'));
 console.log(keepLast('abcdefghij'));
 console.log(keepFirstLast('abcdefghij'));
+console.log(keepFirstLast('af'));
