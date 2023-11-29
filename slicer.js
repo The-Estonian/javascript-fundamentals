@@ -1,6 +1,6 @@
 const slice = (arr, startIndx, endIndx = arr.length) => {
   if (startIndx < 0) {
-    startIndx = endIndx + startIndx;
+    startIndx = arr.length + startIndx;
   }
   if (endIndx < 0) {
     endIndx = arr.length + endIndx;
@@ -23,3 +23,4 @@ console.log(slice([1, 2, 3, 4, 5], 2));
 console.log(slice('abcdef', 2));
 console.log(slice('abcdef', -2));
 console.log(slice('abcdef', 0, -2));
+console.log(slice('abcdef', -3, -1));
