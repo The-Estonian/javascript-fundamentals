@@ -23,7 +23,7 @@ const join = (arr, trigger) => {
     }
     returnString += arr[index];
   }
-  return returnString.toString();
+  return returnString;
 };
 
 // console.log(split('abxcdxefxgh', 'x'));
@@ -37,7 +37,7 @@ const join = (arr, trigger) => {
 
 // console.log(split('a b c', ' ') == ['a', 'b', 'c']);
 // console.log(split('ggg - ddd - b', ' - ') == ['ggg', 'ddd', 'b']);
-// console.log(split('ee,ff,g,', ',') == ['ee', 'ff', 'g', '']);
+// console.log(split('ee,ff,g,', ','), ['ee', 'ff', 'g', '']);
 // console.log(join(['ee', 'ff', 'g', ''], ',') === 'ee,ff,g,');
 // console.log(join(['ggg', 'ddd', 'b'], ' - ') === 'ggg - ddd - b');
 // console.log(join(['a', 'b', 'c'], ' ') === 'a b c');
