@@ -29,3 +29,8 @@ const join = (arr, trigger) => {
 // console.log(split('abxcdxefxgh', 'x'));
 // console.log(join(['ab', 'cd', 'ef', 'gh'], ':'));
 // console.log(split('ggg - ddd - b', ' - '));
+// console.log(split('a b c', ' '));
+// console.log(split('ee,ff,g,', ','));
+// console.log(join(['ee', 'ff', 'g', ''], ','));
+// console.log(join(['ggg', 'ddd', 'b'], ' - '));
+// console.log(join(['a', 'b', 'c'], ' '));
