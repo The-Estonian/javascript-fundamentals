@@ -50,7 +50,7 @@ const modulo = (a, b) => {
   }
   if (b < 0) {
     b = 0 - b;
-    trigger = !trigger;
+    // trigger = !trigger;
   }
   var returnSum = a;
   for (let index = 0; index < a; index++) {
