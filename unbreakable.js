@@ -1,13 +1,15 @@
 const split = (str, trigger) => {
   var returnArray = [];
   var trailingStr = '';
-  for (let index = 0; index < str.length; index++) {
-    if (str[index] == trigger) {
+  for (let index = 0; index < str.length; ) {
+    if (str.slice(index, index + trigger.length) == trigger) {
       returnArray.push(trailingStr);
       trailingStr = '';
+      index += trigger.length;
       continue;
     }
     trailingStr += str[index];
+    index++;
   }
   returnArray.push(trailingStr);
   return returnArray;
@@ -26,3 +28,4 @@ const join = (arr, trigger) => {
 
 // console.log(split('abxcdxefxgh', 'x'));
 // console.log(join(['ab', 'cd', 'ef', 'gh'], ':'));
+console.log(split('ggg - ddd - b', ' - '));
