@@ -1,5 +1,5 @@
 const round = (n) => {
-  trigger = false;
+  var trigger = false;
   if (n < 0) {
     trigger = true;
   }
@@ -26,7 +26,7 @@ const round = (n) => {
 };
 
 const ceil = (n) => {
-  trigger = false;
+  var trigger = false;
   if (n < 0) {
     trigger = true;
   }
@@ -47,7 +47,7 @@ const ceil = (n) => {
 };
 
 const floor = (n) => {
-  trigger = false;
+  var trigger = false;
   if (n < 0) {
     trigger = true;
   }
@@ -68,7 +68,7 @@ const floor = (n) => {
 };
 
 const trunc = (n) => {
-  trigger = false;
+  var trigger = false;
   if (n < 0) {
     trigger = true;
   }
