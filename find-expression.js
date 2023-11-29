@@ -5,7 +5,6 @@ const findExpression = (n) => {
     return undefined;
   }
   while (testN != n) {
-    expression.unshift(' ');
     if (n > 1) {
       if ((n / 2) % 2 == 1 && n != 2) {
         n -= 4;
@@ -17,6 +16,10 @@ const findExpression = (n) => {
     } else {
       n++;
     }
+    if (testN === n) {
+      break;
+    }
+    expression.unshift(' ');
   }
   expression.unshift('1 ');
   return expression.join('');
@@ -25,4 +28,4 @@ const findExpression = (n) => {
 // const add4 = '+4';
 // const mul2 = '*2';
 
-// console.log(findExpression(200));
+// console.log(findExpression(100).split(' '));
