@@ -6,13 +6,13 @@ const slice = (arr, startIndx, endIndx = arr.length) => {
     endIndx = arr.length + endIndx;
   }
   if (Array.isArray(arr)) {
-    var returnSlice = [];
+    let returnSlice = [];
     for (let index = startIndx; index < endIndx; index++) {
       returnSlice.push(arr[index]);
     }
     return returnSlice;
   }
-  var returnSlice = '';
+  let returnSlice = '';
   for (let index = startIndx; index < endIndx; index++) {
     returnSlice += arr[index];
   }

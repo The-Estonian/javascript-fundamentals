@@ -1,10 +1,10 @@
 const round = (n) => {
-  var trigger = false;
+  let trigger = false;
   if (n < 0) {
     trigger = true;
   }
   if (trigger) {
-    var counter = 0;
+    let counter = 0;
     while (n < -1) {
       counter++;
       n++;
@@ -26,12 +26,12 @@ const round = (n) => {
 };
 
 const ceil = (n) => {
-  var trigger = false;
+  let trigger = false;
   if (n < 0) {
     trigger = true;
   }
   if (trigger) {
-    var counter = 0;
+    let counter = 0;
     while (n < -1) {
       counter++;
       n++;
@@ -47,12 +47,12 @@ const ceil = (n) => {
 };
 
 const floor = (n) => {
-  var trigger = false;
+  let trigger = false;
   if (n < 0) {
     trigger = true;
   }
   if (trigger) {
-    var counter = 0;
+    let counter = 0;
     while (n < 0) {
       counter++;
       n++;
@@ -68,12 +68,12 @@ const floor = (n) => {
 };
 
 const trunc = (n) => {
-  var ff = false;
+  let ff = false;
   if (n > 0xfffffffff) {
     n -= 0xfffffffff;
     ff = true;
   }
-  var trigger = false;
+  let trigger = false;
   if (n < 0) {
     trigger = true;
   }

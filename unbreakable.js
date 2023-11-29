@@ -1,6 +1,6 @@
 const split = (str, trigger) => {
-  var returnArray = [];
-  var trailingStr = '';
+  let returnArray = [];
+  let trailingStr = '';
   for (let index = 0; index < str.length; ) {
     if (str.slice(index, index + trigger.length) === trigger) {
       returnArray.push(trailingStr);
@@ -16,7 +16,7 @@ const split = (str, trigger) => {
 };
 
 const join = (arr, trigger) => {
-  var returnString = '';
+  let returnString = '';
   for (let index = 0; index < arr.length; index++) {
     if (index != 0) {
       returnString += trigger;

@@ -1,5 +1,5 @@
 const multiply = (a, b) => {
-  var trigger = false;
+  let trigger = false;
   if (a < 0) {
     a = 0 - a;
     trigger = !trigger;
@@ -8,7 +8,7 @@ const multiply = (a, b) => {
     b = 0 - b;
     trigger = !trigger;
   }
-  var returnSum = 0;
+  let returnSum = 0;
   for (let index = 0; index < b; index++) {
     returnSum += a;
   }
@@ -19,7 +19,7 @@ const multiply = (a, b) => {
 };
 
 const divide = (a, b) => {
-  var trigger = false;
+  let trigger = false;
   if (a < 0) {
     a = 0 - a;
     trigger = !trigger;
@@ -28,7 +28,7 @@ const divide = (a, b) => {
     b = 0 - b;
     trigger = !trigger;
   }
-  var returnSum = a;
+  let returnSum = a;
   for (let index = 0; index < a; index++) {
     if (returnSum >= b) {
       returnSum -= b;
@@ -43,7 +43,7 @@ const divide = (a, b) => {
 };
 
 const modulo = (a, b) => {
-  var trigger = false;
+  let trigger = false;
   if (a < 0) {
     a = 0 - a;
     trigger = !trigger;
@@ -52,7 +52,7 @@ const modulo = (a, b) => {
     b = 0 - b;
     // trigger = !trigger;
   }
-  var returnSum = a;
+  let returnSum = a;
   for (let index = 0; index < a; index++) {
     if (returnSum >= b) {
       returnSum -= b;
