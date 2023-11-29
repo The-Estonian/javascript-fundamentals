@@ -8,7 +8,7 @@ const indexOf = (arr, value, index = 0) => {
 };
 
 const lastIndexOf = (arr, value, ind = arr.length) => {
-  var lastIndex = 0;
+  var lastIndex = -1;
   for (let index = 0; index <= ind; index++) {
     if (arr[index] == value) {
       lastIndex = index;
@@ -27,3 +27,4 @@ const includes = (arr, value) => {
 };
 // console.log(lastIndexOf(['t', 0, 0, 't'], 't', 2));
 // console.log(lastIndexOf([0, 0, 't', 't'], 't', 3));
+// console.log(lastIndexOf('bigArray', {}));
