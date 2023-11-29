@@ -1,4 +1,7 @@
 const split = (str, trigger) => {
+  if (trigger.length === 0) {
+    trigger = ' ';
+  }
   let returnArray = [];
   let trailingStr = '';
   for (let index = 0; index < str.length; ) {
