@@ -1,4 +1,4 @@
-const rna = (str) => {
+const RNA = (str) => {
   let returnString = '';
   for (let index = 0; index < str.length; index++) {
     if (str[index] == 'G') {
@@ -14,7 +14,7 @@ const rna = (str) => {
   return returnString;
 };
 
-const dna = (str) => {
+const DNA = (str) => {
   let returnString = '';
   for (let index = 0; index < str.length; index++) {
     if (str[index] == 'C') {
@@ -29,3 +29,5 @@ const dna = (str) => {
   }
   return returnString;
 };
+
+console.log(RNA(''));
