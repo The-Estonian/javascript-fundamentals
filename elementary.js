@@ -57,9 +57,12 @@ const modulo = (a, b) => {
     if (returnSum >= b) {
       returnSum -= b;
     } else {
+      if (trigger) {
+        return returnSum - returnSum - returnSum;
+      }
       return returnSum;
     }
   }
 };
 
-console.log(modulo(123, -22));
+console.log(modulo(-123, 22));
