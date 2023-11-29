@@ -1,8 +1,11 @@
 const split = (str, trigger) => {
-  if (trigger.length === 0) {
-    trigger = ' ';
-  }
   let returnArray = [];
+  if (trigger === '') {
+    for (let index = 0; index < str.length; index++) {
+      returnArray.push(str[index]);
+    }
+    return returnArray;
+  }
   let trailingStr = '';
   for (let index = 0; index < str.length; ) {
     if (str.slice(index, index + trigger.length) === trigger) {
@@ -29,7 +32,7 @@ const join = (arr, trigger) => {
   return returnString;
 };
 
-// console.log(split('abxcdxefxgh', 'x'));
+console.log(split('Riad', ''));
 // console.log(join(['ab', 'cd', 'ef', 'gh'], ':'));
 // console.log(split('ggg - ddd - b', ' - '));
 // console.log(split('a b c', ' '));
