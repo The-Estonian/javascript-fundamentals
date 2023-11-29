@@ -1,4 +1,4 @@
-const chunky = (arr, size) => {
+const chunk = (arr, size) => {
   var returnArray = [];
   for (let index = 0; index < arr.length; ) {
     var returnSlice = arr.slice(index, index + size);
@@ -8,4 +8,5 @@ const chunky = (arr, size) => {
   return returnArray;
 };
 
-console.log(chunky('abcdefghij', 2));
+// console.log(chunk('abcdefghij', 2));
+// console.log(chunk(['a', 'b', 'c', 'd'], 2));
