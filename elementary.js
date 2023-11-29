@@ -43,6 +43,15 @@ const divide = (a, b) => {
 };
 
 const modulo = (a, b) => {
+  var trigger = false;
+  if (a < 0) {
+    a = 0 - a;
+    trigger = !trigger;
+  }
+  if (b < 0) {
+    b = 0 - b;
+    trigger = !trigger;
+  }
   var returnSum = a;
   for (let index = 0; index < a; index++) {
     if (returnSum >= b) {
@@ -53,4 +62,4 @@ const modulo = (a, b) => {
   }
 };
 
-console.log(divide(-123, 22));
+console.log(modulo(123, -22));
