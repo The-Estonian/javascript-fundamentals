@@ -1,23 +1,28 @@
 const findExpression = (n) => {
-  let expression = '1';
+  let expression = [];
   let testN = 1;
   if (n % 2 == 1) {
     return undefined;
   }
-  while (testN < n) {
-    expression += ' ';
-    if (testN * 2 < n) {
-      expression += mul2;
-      testN *= 2;
+  while (testN != n) {
+    expression.unshift(' ');
+    if (n > 1) {
+      if ((n / 2) % 2 == 1 && n != 2) {
+        n -= 4;
+        expression.unshift(add4);
+      } else {
+        n /= 2;
+        expression.unshift(mul2);
+      }
     } else {
-      expression += add4;
-      testN += 4;
+      n++;
     }
   }
-  return expression;
+  expression.unshift('1 ');
+  return expression.join('');
 };
 
 // const add4 = '+4';
 // const mul2 = '*2';
 
-// console.log(findExpression(100));
+// console.log(findExpression(200));
