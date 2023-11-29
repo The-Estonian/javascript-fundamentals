@@ -1,5 +1,5 @@
 const chunk = (arr, size) => {
-  var returnArray = [];
+  let returnArray = [];
   for (let index = 0; index < arr.length; ) {
     var returnSlice = arr.slice(index, index + size);
     returnArray.push(returnSlice);
