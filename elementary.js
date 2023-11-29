@@ -33,7 +33,11 @@ const divide = (a, b) => {
     if (returnSum >= b) {
       returnSum -= b;
     } else {
-      return index - index - index;
+      if (trigger) {
+        return index - index - index;
+      } else {
+        return index;
+      }
     }
   }
 };
@@ -49,4 +53,4 @@ const modulo = (a, b) => {
   }
 };
 
-console.log(divide(123, -22));
+console.log(divide(78, 34));
