@@ -16,9 +16,6 @@ const split = (str, trigger) => {
 };
 
 const join = (arr, trigger) => {
-  if (trigger == null) {
-    trigger = ',';
-  }
   var returnString = '';
   for (let index = 0; index < arr.length; index++) {
     if (index != 0) {
@@ -26,7 +23,7 @@ const join = (arr, trigger) => {
     }
     returnString += arr[index];
   }
-  return returnString;
+  return returnString.toString();
 };
 
 // console.log(split('abxcdxefxgh', 'x'));
