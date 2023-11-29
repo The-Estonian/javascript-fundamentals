@@ -6,10 +6,10 @@ const split = (str, trigger) => {
       returnArray.push(trailingStr);
       trailingStr = '';
       index += trigger.length;
-      continue;
+    } else {
+      trailingStr += str[index];
+      index++;
     }
-    trailingStr += str[index];
-    index++;
   }
   returnArray.push(trailingStr);
   return returnArray;
