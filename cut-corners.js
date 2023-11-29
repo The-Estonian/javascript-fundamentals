@@ -4,7 +4,7 @@ const round = (n) => {
     trigger = true;
   }
   if (trigger) {
-    counter = 0;
+    var counter = 0;
     while (n < -1) {
       counter++;
       n++;
@@ -31,7 +31,7 @@ const ceil = (n) => {
     trigger = true;
   }
   if (trigger) {
-    counter = 0;
+    var counter = 0;
     while (n < -1) {
       counter++;
       n++;
@@ -52,7 +52,7 @@ const floor = (n) => {
     trigger = true;
   }
   if (trigger) {
-    counter = 0;
+    var counter = 0;
     while (n < 0) {
       counter++;
       n++;
@@ -73,7 +73,7 @@ const trunc = (n) => {
     trigger = true;
   }
   if (trigger) {
-    counter = 0;
+    var counter = 0;
     while (n < -1) {
       counter++;
       n++;
