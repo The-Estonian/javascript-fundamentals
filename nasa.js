@@ -1,7 +1,7 @@
 const nasa = (n) => {
   let returnString = '';
   for (let index = 1; index <= n; index++) {
-    if (index != 0) {
+    if (index != 1) {
       returnString += ' ';
     }
     if (index % 3 === 0 && index % 5 === 0) {
@@ -17,4 +17,4 @@ const nasa = (n) => {
   return returnString;
 };
 
-console.log(nasa(20));
+console.log(nasa(15));
