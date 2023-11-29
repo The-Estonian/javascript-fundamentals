@@ -19,7 +19,6 @@ const multiply = (a, b) => {
 };
 
 const divide = (a, b) => {
-  var returnSum = a;
   var trigger = false;
   if (a < 0) {
     a = 0 - a;
@@ -29,6 +28,7 @@ const divide = (a, b) => {
     b = 0 - b;
     trigger = !trigger;
   }
+  var returnSum = a;
   for (let index = 0; index < a; index++) {
     if (returnSum >= b) {
       returnSum -= b;
@@ -53,4 +53,4 @@ const modulo = (a, b) => {
   }
 };
 
-console.log(divide(78, 34));
+console.log(divide(-123, 22));
