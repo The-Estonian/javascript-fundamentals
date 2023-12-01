@@ -4,9 +4,11 @@ const regex =
 const groupPrice = (str) => {
   const returnArray = [];
   let arr = str.match(regex);
-  //   console.log(arr);
+  if (arr === null) {
+    return [];
+  }
   for (let i = 0; i < arr.length; i++) {
-    let middleman = [];
+    // let middleman = [];
     middleman.push(arr[i]);
     middleman.push(arr[i].match(/[0-9]+/g)[0]);
     middleman.push(arr[i].match(/[0-9]+/g)[1]);
@@ -23,6 +25,7 @@ const groupPrice = (str) => {
   //   console.log(str);
 };
 
+// console.log(groupPrice('this, 0.32, is not a match'));
 // console.log(groupPrice('USD12.31ASD AUD33.33'));
 // console.log(groupPrice('The price of the cereals is $4.00.'));
 
