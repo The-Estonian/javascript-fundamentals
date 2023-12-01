@@ -36,7 +36,7 @@ const notSoGreedy = (url) => {
 // testurl =
 //   'qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?you=something&something=you';
 // testurl2 = 'http://www_example.com/';
-var test3 =
+// var test3 =
 //   'http://hummm/how?how=come&same=[123,21]&you=nextperson&id=123312&next=123DSAD&ok=true&notOk=true';
 // console.log(getURL(testurl));
 // console.log(greedyQuery(testurl));
