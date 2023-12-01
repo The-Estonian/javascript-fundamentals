@@ -12,9 +12,7 @@ const greedyQuery = (url) => {
     const matches = allURLs[i].match(
       /\?([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*&){2,255}([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*)/g
     );
-    if (matches !== null && matches.length > 1) {
-      newURLArr.push(allURLs[i]);
-    }
+      newURLArr.push(matches);
   }
   return newURLArr;
 };
@@ -25,10 +23,9 @@ const notSoGreedy = (url) => {
   for (let i = 0; i < allURLs.length; i++) {
     const matches = allURLs[i].match(
       /\?([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*&){1,2}([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*)$/g
-    );
-    if (matches !== null && matches.length >= 2 && matches.length <= 3) {
-      newURLArr.push(allURLs[i]);
-    }
+    ); {
+      newURLArr.push(matches);
+    
   }
   return newURLArr;
 };
