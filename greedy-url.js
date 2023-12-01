@@ -10,9 +10,11 @@ const greedyQuery = (url) => {
   const newURLArr = [];
   for (let i = 0; i < allURLs.length; i++) {
     const matches = allURLs[i].match(
-      /\?([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*&){2,255}([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*)/g
+      /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.[a-zA-Z0-9()]{1,6})?(?:[-a-zA-Z0-9()\[\],@:%_\+.~#?&\/=]*)/g
     );
-    newURLArr.push(allURLs[i]);
+    if (matches !== null && matches.length >= 3) {
+      newURLArr.push(allURLs[i]);
+    }
   }
   return newURLArr;
 };
@@ -24,11 +26,11 @@ const notSoGreedy = (url) => {
     const matches = allURLs[i].match(
       /\?([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*&){1,2}([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*)$/g
     );
-    {
+    if (matches !== null && matches.length >= 2 && matches.length <= 3) {
       newURLArr.push(allURLs[i]);
     }
-    return newURLArr;
   }
+  return newURLArr;
 };
 
 //https://regexr.com/39nr7
