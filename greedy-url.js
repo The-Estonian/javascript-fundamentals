@@ -30,7 +30,7 @@ const notSoGreedy = (url) => {
     // if (matches !== null && matches.length > 1) {
     //     console.log(matches.length);
     // }
-    if (matches !== null && matches.length === 2 && matches.length === 3) {
+    if (matches !== null && matches.length >= 2 && matches.length <= 3) {
       newURLArr.push(allURLs[i]);
     }
   }
