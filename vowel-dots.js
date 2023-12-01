@@ -1,5 +1,6 @@
+const vowels = /[aeiouAEIOU]/g;
+
 const vowelDots = (str) => {
-  const vowels = /[aeiouAEIOU]/g;
   let middleSticher = '';
   for (let i = 0; i < str.length; i++) {
     if (str[i].match(vowels)) {
