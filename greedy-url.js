@@ -10,9 +10,9 @@ const greedyQuery = (url) => {
   const newURLArr = [];
   for (let i = 0; i < allURLs.length; i++) {
     const matches = allURLs[i].match(
-      /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.[a-zA-Z0-9()]{1,6})?(?:[-a-zA-Z0-9()\[\],@:%_\+.~#?&\/=]*)/g
+      /\?([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*&){2,255}([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*)/g
     );
-    if (matches !== null && matches.length >= 3) {
+    if (matches !== null && matches.length === 1) {
       newURLArr.push(allURLs[i]);
     }
   }
@@ -26,7 +26,7 @@ const notSoGreedy = (url) => {
     const matches = allURLs[i].match(
       /\?([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*&){1,2}([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*)$/g
     );
-    if (matches !== null && matches.length >= 2 && matches.length <= 3) {
+    if (matches !== null && matches.length === 1) {
       newURLArr.push(allURLs[i]);
     }
   }
@@ -45,3 +45,9 @@ const notSoGreedy = (url) => {
 // console.log(notSoGreedy(testurl));
 // console.log(getURL(testurl2));
 // console.log(greedyQuery(test3));
+
+// console.log(
+//   greedyQuery(
+//     'http://www.example.com/catalog.asp?itemid=232&template=fresh&crcat=ppc&crsource=google&crkw=buy-a-lot'
+//   )
+// );
