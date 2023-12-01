@@ -37,8 +37,8 @@ const notSoGreedy = (url) => {
   return newURLArr;
 };
 
-testurl =
-  'qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?you=something&something=you';
+// testurl =
+//   'qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?you=something&something=you';
 
 // console.log(getURL(testurl));
 // console.log(greedyQuery(testurl));
