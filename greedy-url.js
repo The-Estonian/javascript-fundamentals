@@ -1,6 +1,6 @@
 const getURL = (url) => {
   var cleanURL = url.match(
-    /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.[a-zA-Z0-9()]{1,6})?(?:[-a-zA-Z0-9()\[\],@:%_\+.~#?&\/=]*)/g
+    /^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?$/
   );
   return cleanURL;
 };
@@ -12,7 +12,7 @@ const greedyQuery = (url) => {
     const matches = allURLs[i].match(
       /\?([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*&){2,255}([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*)/g
     );
-    newURLArr.push(matches);
+    newURLArr.push(allURLs[i]);
   }
   return newURLArr;
 };
@@ -25,11 +25,13 @@ const notSoGreedy = (url) => {
       /\?([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*&){1,2}([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*)$/g
     );
     {
-      newURLArr.push(matches);
+      newURLArr.push(allURLs[i]);
     }
     return newURLArr;
   }
 };
+
+//https://regexr.com/39nr7
 
 // testurl =
 //   'qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?you=something&something=you';
