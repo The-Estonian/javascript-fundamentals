@@ -23,7 +23,9 @@ const notSoGreedy = (url) => {
   var allURLs = getURL(url);
   const newURLArr = [];
   for (let i = 0; i < allURLs.length; i++) {
-    const matches = allURLs[i].match(/[?&]([^=]+)=([^&]+)/g);
+    const matches = allURLs[i].match(
+      /\?([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*&){1,2}([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*)$/g
+    );
     if (matches !== null && matches.length >= 2 && matches.length <= 3) {
       newURLArr.push(allURLs[i]);
     }
@@ -35,9 +37,9 @@ const notSoGreedy = (url) => {
 //   'qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?you=something&something=you';
 // testurl2 = 'http://www_example.com/';
 var test3 =
-  'http://hummm/how?how=come&same=[123,21]&you=nextperson&id=123312&next=123DSAD&ok=true&notOk=true';
+//   'http://hummm/how?how=come&same=[123,21]&you=nextperson&id=123312&next=123DSAD&ok=true&notOk=true';
 // console.log(getURL(testurl));
 // console.log(greedyQuery(testurl));
 // console.log(notSoGreedy(testurl));
 // console.log(getURL(testurl2));
-console.log(greedyQuery(test3));
+// console.log(greedyQuery(test3));
