@@ -8,7 +8,7 @@ const groupPrice = (str) => {
     return [];
   }
   for (let i = 0; i < arr.length; i++) {
-    // let middleman = [];
+    let middleman = [];
     middleman.push(arr[i]);
     middleman.push(arr[i].match(/[0-9]+/g)[0]);
     middleman.push(arr[i].match(/[0-9]+/g)[1]);
