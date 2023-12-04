@@ -16,8 +16,8 @@ const addWeek = (obj) => {
     'secondSunday',
   ];
 
-  currentDate = new Date(obj);
-  startDate = new Date(currentDate.getFullYear(), 0, 1);
+  var currentDate = new Date(obj);
+  var startDate = new Date(currentDate.getFullYear(), 0, 1);
   var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
   if (Math.ceil(days / 7) % 2 == 0) {
     return dayNames[currentDate.getDay() + 6];
