@@ -1,6 +1,6 @@
 const isValid = (date) => {
-  date = new Date(date);
-  if (date.toString() == 'Invalid Date') {
+  newDate = new Date(date);
+  if (newDate.toString() == 'Invalid Date') {
     return false;
   }
   //   console.log(date);
@@ -40,4 +40,4 @@ const isPast = (date) => {
 // console.log(isFuture(date1));
 // console.log(isValid(date1));
 // console.log(isValid(Date.now()));
-// console.log(isValid('2013 - 01 - 01'));
+console.log(isValid('2013 - 01 - 01'));
