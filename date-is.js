@@ -1,8 +1,9 @@
 const isValid = (date) => {
   date = new Date(date);
-  if (date == 'Invalid Date') {
+  if (date.toString() == 'Invalid Date') {
     return false;
   }
+//   console.log(date);
   return (
     Object.prototype.toString.call(date) === '[object Date]' &&
     typeof date.getMonth === 'function' &&
