@@ -2,7 +2,8 @@ const isValid = (date) => {
   return (
     Object.prototype.toString.call(date) === '[object Date]' &&
     typeof date.getMonth === 'function' &&
-    date instanceof Date
+    date instanceof Date &&
+    !isNaN(date)
   );
 };
 
@@ -29,7 +30,7 @@ const isPast = (date) => {
   return !isFuture(date);
 };
 
-var date1 = new Date('2013-01-01');
+var date1 = new Date('');
 // var date2 = new Date('2025-08-12');
 // console.log(isAfter(date2, date1));
 // console.log(isBefore(date1, date2));
