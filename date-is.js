@@ -3,13 +3,16 @@ const isValid = (date) => {
   if (date.toString() == 'Invalid Date') {
     return false;
   }
-//   console.log(date);
-  return (
-    Object.prototype.toString.call(date) === '[object Date]' &&
-    typeof date.getMonth === 'function' &&
-    date instanceof Date &&
+  //   console.log(date);
+  if (
+    Object.prototype.toString.call(date) !== '[object Date]' &&
+    typeof date.getMonth !== 'function' &&
+    !date instanceof Date &&
     !isNaN(date)
-  );
+  ) {
+    return false;
+  }
+  return true;
 };
 
 const isAfter = (date1, date2) => {
@@ -35,11 +38,11 @@ const isPast = (date) => {
   return !isFuture(date);
 };
 
-var date1 = new Date('');
+// var date1 = new Date('');
 // var date2 = new Date('2025-08-12');
 // console.log(isAfter(date2, date1));
 // console.log(isBefore(date1, date2));
 // console.log(isFuture(date1));
 // console.log(isValid(date1));
 // console.log(isValid(Date.now()));
-console.log(isValid('2013 - 01 - 01'));
+// console.log(isValid('2013 - 01 - 01'));
