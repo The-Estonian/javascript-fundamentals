@@ -20,9 +20,10 @@ const firstDayWeek = (week, year) => {
     '-' +
     String(dateData.getMonth() + 1).padStart(2, '0') +
     '-' +
-    year
+    String(year).padStart(4, '0')
   );
 };
 
 // console.log(firstDayWeek(1, '1000')); // '01-01-1000'
 // console.log(firstDayWeek(52, '1000')); // '22-12-1000'
+// console.log(firstDayWeek(2, '0001')); // '08-01-0001'
