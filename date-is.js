@@ -1,4 +1,5 @@
 const isValid = (date) => {
+  date = new Date(date);
   return (
     Object.prototype.toString.call(date) === '[object Date]' &&
     typeof date.getMonth === 'function' &&
@@ -35,4 +36,5 @@ var date1 = new Date('');
 // console.log(isAfter(date2, date1));
 // console.log(isBefore(date1, date2));
 // console.log(isFuture(date1));
-console.log(isValid(date1));
+// console.log(isValid(date1));
+// console.log(isValid(Date.now()));
