@@ -4,12 +4,7 @@ const isValid = (date) => {
     return false;
   }
   //   console.log(date);
-  if (
-    Object.prototype.toString.call(date) !== '[object Date]' &&
-    typeof date.getMonth !== 'function' &&
-    !date instanceof Date &&
-    !isNaN(date)
-  ) {
+  if (typeof date !== 'number' && !date instanceof Date) {
     return false;
   }
   return true;
