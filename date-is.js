@@ -1,10 +1,11 @@
 const isValid = (date) => {
+  console.log(date);
   let newDate = new Date(date);
   if (newDate.toString() == 'Invalid Date') {
     return false;
   }
   //   console.log(date);
-  if (typeof date !== 'number' && !date instanceof Date) {
+  if (typeof date !== 'number' && !(date instanceof Date)) {
     return false;
   }
   return true;
