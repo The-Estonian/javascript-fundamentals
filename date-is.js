@@ -12,7 +12,7 @@ const isValid = (date) => {
 };
 
 const isAfter = (date1, date2) => {
-  if (date1.getTime() > date2.getTime()) {
+  if (date1 > date2) {
     return true;
   }
   return false;
