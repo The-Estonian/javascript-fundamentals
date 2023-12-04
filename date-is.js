@@ -1,5 +1,8 @@
 const isValid = (date) => {
   date = new Date(date);
+  if (date == 'Invalid Date') {
+    return false;
+  }
   return (
     Object.prototype.toString.call(date) === '[object Date]' &&
     typeof date.getMonth === 'function' &&
@@ -38,3 +41,4 @@ var date1 = new Date('');
 // console.log(isFuture(date1));
 // console.log(isValid(date1));
 // console.log(isValid(Date.now()));
+console.log(isValid('2013 - 01 - 01'));
