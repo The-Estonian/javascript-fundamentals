@@ -1,5 +1,5 @@
 const isValid = (date) => {
-  newDate = new Date(date);
+  let newDate = new Date(date);
   if (newDate.toString() == 'Invalid Date') {
     return false;
   }
@@ -22,7 +22,7 @@ const isBefore = (date1, date2) => {
 };
 
 const isFuture = (date) => {
-  var currentDate = new Date();
+  let currentDate = new Date();
   if (isValid(date) && isAfter(date, currentDate)) {
     return true;
   }
