@@ -1,28 +1,27 @@
 const addWeek = (obj) => {
   var dayNames = [
+    'Sunday',
     'Monday',
     'Tuesday',
     'Wednesday',
     'Thursday',
     'Friday',
     'Saturday',
-    'Sunday',
+    'secondSunday',
     'secondMonday',
     'secondTuesday',
     'secondWednesday',
     'secondThursday',
     'secondFriday',
     'secondSaturday',
-    'secondSunday',
   ];
 
   var currentDate = new Date(obj);
-  var startDate = new Date(currentDate.getFullYear(), 0, 1);
-  var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
-  if (Math.ceil(days / 7) % 2 == 0) {
-    return dayNames[currentDate.getDay() + 6];
-  }
-  return dayNames[currentDate.getDay() - 1];
+  var epochToZero = currentDate.getTime() + 62135596800000;
+  var getMSinDay = 24*60*60*1000
+  var getDaysFromZeroEpoch = epochToZero / getMSinDay;
+//   console.log(getDaysFromZeroEpoch%7);
+  return dayNames[getDaysFromZeroEpoch % 14];
 };
 
 const timeTravel = (obj) => {
@@ -42,9 +41,10 @@ const timeTravel = (obj) => {
 
 //Fri May 29 2020 21:22:22 GMT+0100 (Western European Summer Time)
 
-// console.log(addWeek(new Date('0001-01-01')));
-// console.log(addWeek(new Date('0001-01-02')));
-// console.log(addWeek(new Date('0001-01-07')));
-// console.log(addWeek(new Date('0001-01-08')));
-// console.log(addWeek(new Date('0001-01-09')));
-// console.log(addWeek(new Date('2025-08-11')));
+// console.log(addWeek(new Date('0001-01-01'))); // monday
+// console.log(addWeek(new Date('0001-01-02'))); // tuesday
+// console.log(addWeek(new Date('0001-01-03'))); // wednesday
+// console.log(addWeek(new Date('0001-01-07'))); // sunday
+// console.log(addWeek(new Date('0001-01-08'))); // secondMonday
+// console.log(addWeek(new Date('0001-01-09'))); // secondTuesday
+console.log(addWeek(new Date('2025-08-11'))); // secondSunday
