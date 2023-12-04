@@ -1,6 +1,6 @@
 const firstDayWeek = (week, year) => {
-  //   console.log(week);
-  //   console.log(year);
+    console.log(week);
+    console.log(year);
   let day = 1;
   const month = Math.floor(week / 4.3);
 
