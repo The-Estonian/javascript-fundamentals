@@ -1,5 +1,9 @@
 const isValid = (date) => {
-  return new Date(date) != 'Invalid Date';
+  return (
+    Object.prototype.toString.call(date) === '[object Date]' &&
+    typeof date.getMonth === 'function' &&
+    date instanceof Date
+  );
 };
 
 const isAfter = (date1, date2) => {
@@ -25,8 +29,9 @@ const isPast = (date) => {
   return !isFuture(date);
 };
 
-// var date1 = new Date('2025-08-11');
+var date1 = new Date('2013-01-01');
 // var date2 = new Date('2025-08-12');
 // console.log(isAfter(date2, date1));
 // console.log(isBefore(date1, date2));
 // console.log(isFuture(date1));
+console.log(isValid(date1));
