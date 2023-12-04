@@ -34,7 +34,11 @@ const isFuture = (date) => {
 };
 
 const isPast = (date) => {
-  return !isFuture(date);
+  let currentDate = new Date();
+  if (isValid(date) && isBefore(date, currentDate)) {
+    return true;
+  }
+  return false;
 };
 
 // var date1 = new Date('');
@@ -45,4 +49,5 @@ const isPast = (date) => {
 // console.log(isValid(date1));
 // console.log(isValid(Date.now()));
 // console.log(isValid('2013 - 01 - 01'));
-console.log(isBefore(new Date('')));
+// console.log(isBefore(new Date('')));
+console.log(isPast(new Date('')));
