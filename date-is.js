@@ -19,7 +19,10 @@ const isAfter = (date1, date2) => {
 };
 
 const isBefore = (date1, date2) => {
-  return !isAfter(date1, date2);
+  if (date1 < date2) {
+    return true;
+  }
+  return false;
 };
 
 const isFuture = (date) => {
@@ -41,4 +44,5 @@ const isPast = (date) => {
 // console.log(isFuture(date1));
 // console.log(isValid(date1));
 // console.log(isValid(Date.now()));
-console.log(isValid('2013 - 01 - 01'));
+// console.log(isValid('2013 - 01 - 01'));
+console.log(isBefore(new Date('')));
