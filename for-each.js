@@ -3,5 +3,5 @@ const forEach = (arr, func) => {
   for (let i = 0; i < arr.length; i++) {
     thearr.push(func(arr[i]));
   }
-  return [arr, thearr];
+  return thearr;
 };
