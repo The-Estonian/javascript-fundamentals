@@ -17,10 +17,10 @@ const sumOrMul = (data, leftover = 0) => {
 };
 
 // console.log(sumOrMul([29, 23, 3, 2, 25])); // 135
-console.log(sumOrMul([18, 17, 7, 13, 25], 12)); // 278
+// console.log(sumOrMul([18, 17, 7, 13, 25], 12)); // 278
 
-const funcExec = (data) => {
+const funcExec = (data, leftover) => {
   return data.reduce((hold, run) => {
     return run(hold);
-  });
+  }, leftover);
 };
