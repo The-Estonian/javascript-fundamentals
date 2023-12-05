@@ -13,12 +13,32 @@ const filterStartVowel = (data) => {
       item[0] == 'e' ||
       item[0] == 'i' ||
       item[0] == 'o' ||
-      item[0] == 'u'
+      item[0] == 'u' ||
+      item[0] == 'A' ||
+      item[0] == 'E' ||
+      item[0] == 'I' ||
+      item[0] == 'O' ||
+      item[0] == 'U'
     );
   });
 };
 
-// console.log(filterStartVowel(['bash', 'aesh']));
+console.log(
+  filterStartVowel([
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Utah',
+  ])
+);
 
 const filter5Vowels = (data) => {
   return data.filter((item) => {
@@ -29,7 +49,12 @@ const filter5Vowels = (data) => {
         item[i] == 'e' ||
         item[i] == 'i' ||
         item[i] == 'o' ||
-        item[i] == 'u'
+        item[i] == 'u' ||
+        item[i] == 'A' ||
+        item[i] == 'E' ||
+        item[i] == 'I' ||
+        item[i] == 'O' ||
+        item[i] == 'U'
       ) {
         counter++;
       }
@@ -52,7 +77,12 @@ const filter1DistinctVowel = (data) => {
         item[i] == 'e' ||
         item[i] == 'i' ||
         item[i] == 'o' ||
-        item[i] == 'u'
+        item[i] == 'u' ||
+        item[i] == 'A' ||
+        item[i] == 'E' ||
+        item[i] == 'I' ||
+        item[i] == 'O' ||
+        item[i] == 'U'
       ) {
         if (middleman.length == 0) {
           middleman = item[i];
@@ -89,7 +119,12 @@ const multiFilter = (data) => {
       item.name[0] == 'e' ||
       item.name[0] == 'i' ||
       item.name[0] == 'o' ||
-      item.name[0] == 'u'
+      item.name[0] == 'u' ||
+      item.name[0] == 'A' ||
+      item.name[0] == 'E' ||
+      item.name[0] == 'I' ||
+      item.name[0] == 'O' ||
+      item.name[0] == 'U'
     ) {
       return false;
     }
@@ -99,10 +134,15 @@ const multiFilter = (data) => {
     for (let i = 0; i < item.tag.length; i++) {
       if (
         item.tag[i] == 'a' ||
-        item.name[i] == 'e' ||
-        item.name[i] == 'i' ||
-        item.name[i] == 'o' ||
-        item.name[i] == 'u'
+        item.tag[i] == 'e' ||
+        item.tag[i] == 'i' ||
+        item.tag[i] == 'o' ||
+        item.tag[i] == 'u' ||
+        item.tag[i] == 'A' ||
+        item.tag[i] == 'E' ||
+        item.tag[i] == 'I' ||
+        item.tag[i] == 'O' ||
+        item.tag[i] == 'U'
       ) {
         return true;
       }
