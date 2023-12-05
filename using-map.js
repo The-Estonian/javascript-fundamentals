@@ -31,11 +31,11 @@ const upperCasingStates = (data) => {
 
 const fahrenheitToCelsius = (data) => {
   return data.map((temp) => {
-    return Math.floor((temp.slice(0, -2) - 32) * (5 / 9) + '°C');
+    return Math.floor((temp.slice(0, -2) - 32) * (5 / 9)) + '°C';
   });
 };
 
-// console.log(fahrenheitToCelsius(['68°F', '59°F', '25°F'])); // -> ['20°C', '15°C', '-4°C']
+console.log(fahrenheitToCelsius(['68°F', '59°F', '25°F'])); // -> ['20°C', '15°C', '-4°C']
 
 const trimTemp = (data) => {
   return data.map((item) => {
