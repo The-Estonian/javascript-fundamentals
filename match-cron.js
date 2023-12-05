@@ -3,7 +3,7 @@ const matchCron = (str, date) => {
   let hour = date.getHours();
   let day = date.getDate();
   let month = date.getMonth() + 1;
-  let year = date.getFullYear();
+  let year = date.getDay();
   let stringSplitter = str.split(' ');
   let check1 = false;
   let check2 = false;
@@ -16,13 +16,13 @@ const matchCron = (str, date) => {
   if (stringSplitter[1] == '*' || stringSplitter[1] == hour) {
     check2 = true;
   }
-  if (stringSplitter[4] == '*' || stringSplitter[4] == day) {
+  if (stringSplitter[2] == '*' || stringSplitter[2] == day) {
     check3 = true;
   }
   if (stringSplitter[3] == '*' || stringSplitter[3] == month) {
     check4 = true;
   }
-  if (stringSplitter[2] == '*' || stringSplitter[2] == year) {
+  if (stringSplitter[4] == '*' || stringSplitter[4] == year) {
     check5 = true;
   }
 
@@ -37,3 +37,4 @@ const matchCron = (str, date) => {
 // console.log(matchCron('9 * * * *', new Date('2020-05-30 19:21:00'))); // -> false
 // console.log(matchCron('* * * * 1', new Date('2020-06-01 00:00:00'))); // -> true
 // console.log(matchCron('* * * 2 *', new Date('2021-02-01 00:00:00'))); // -> true
+// console.log(matchCron('* * 9 * *', new Date('2020-06-09 00:00:00'))); // -> true
