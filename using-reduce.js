@@ -2,9 +2,7 @@ const adder = (data, leftover = 0) => {
   if (data.length == 0) {
     return 0;
   }
-  return data.reduce((start, end) => {
-    return start + end;
-  }, leftover);
+  return data.reduce((start, end) => start + end, leftover);
 };
 
 // console.log(adder([1, 2, 3, 4])); // 10
