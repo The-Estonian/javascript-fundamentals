@@ -31,7 +31,7 @@ const upperCasingStates = (data) => {
 
 const fahrenheitToCelsius = (data) => {
   return data.map((temp) => {
-    return Math.round(((temp.slice(0, -2) - 32) * (5 / 9)) + '°C')
+    return Math.floor((temp.slice(0, -2) - 32) * (5 / 9) + '°C');
   });
 };
 
@@ -63,7 +63,7 @@ const tempForecasts = (data) => {
       words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
     }
     return `${
-      Math.round(((item.temperature.trim().slice(0, -2) - 32) * (5 / 9)) +
+      Math.floor((item.temperature.trim().slice(0, -2) - 32) * (5 / 9)) +
       '°Celsius'
     } in ${item.city}, ${words.join(' ')}`;
   });
