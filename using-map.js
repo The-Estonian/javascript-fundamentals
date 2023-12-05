@@ -42,8 +42,8 @@ const trimTemp = (data) => {
     return {
       city: item.city,
       temperature: item.temperature.trim(),
-      state,
-      region,
+      state: item.state,
+      region: item.state,
     };
   });
 };
