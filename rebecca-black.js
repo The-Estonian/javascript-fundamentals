@@ -27,7 +27,7 @@ const isLastDayOfMonth = (date) => {
   let year = new Date(date).getFullYear();
   let month = new Date(date).getMonth();
 
-  lastDay = new Date(year, month + 1, 0);
+  let lastDay = new Date(year, month + 1, 0);
 
   return lastDay.getDate() === date.getDate();
 };
