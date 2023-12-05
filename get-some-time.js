@@ -1,4 +1,4 @@
-function isLeapYear(year) {
+function leaper(year) {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
 
@@ -9,7 +9,7 @@ const firstDayWeek = (week, year) => {
   year = Number(year);
   let daysToAdd = 1 + (week - 1) * 7;
   for (let i = 0; i < year; i++) {
-    daysToAdd += isLeapYear(i) ? 366 : 365;
+    daysToAdd += leaper(i) ? 366 : 365;
   }
   week == 52 ? (daysToAdd -= 2) : '';
   week == 43 ? (daysToAdd -= 5) : '';
@@ -31,4 +31,4 @@ const firstDayWeek = (week, year) => {
 // console.log(firstDayWeek(2, '0001')); // '08-01-0001'
 // console.log(firstDayWeek(23, '0091')); // '04-06-0091'
 // console.log(firstDayWeek(43, '1983')); // '17-10-1983'
-console.log(firstDayWeek(2, '2017')); // '02-01-2017'
+// console.log(firstDayWeek(2, '2017')); // '02-01-2017'
