@@ -23,22 +23,22 @@ const filterStartVowel = (data) => {
   });
 };
 
-console.log(
-  filterStartVowel([
-    'Alabama',
-    'Alaska',
-    'Arizona',
-    'Arkansas',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Utah',
-  ])
-);
+// console.log(
+//   filterStartVowel([
+//     'Alabama',
+//     'Alaska',
+//     'Arizona',
+//     'Arkansas',
+//     'Idaho',
+//     'Illinois',
+//     'Indiana',
+//     'Iowa',
+//     'Ohio',
+//     'Oklahoma',
+//     'Oregon',
+//     'Utah',
+//   ])
+// );
 
 const filter5Vowels = (data) => {
   return data.filter((item) => {
@@ -87,7 +87,7 @@ const filter1DistinctVowel = (data) => {
         if (middleman.length == 0) {
           middleman = item[i];
         } else {
-          if (middleman != item[i]) {
+          if (middleman != item[i] && middleman.toLowerCase() != item[i]) {
             return false;
           }
         }
@@ -97,17 +97,18 @@ const filter1DistinctVowel = (data) => {
   });
 };
 
-// console.log(
-//   filter1DistinctVowel([
-//     'aeiou',
-//     'aeioss',
-//     'aeioll',
-//     'aeiii',
-//     'asssss',
-//     'papa',
-//     'papao',
-//   ])
-// );
+console.log(
+  filter1DistinctVowel([
+    'Alabama',
+    'Alaska',
+    'Arkansas',
+    'Kansas',
+    'Maryland',
+    'Mississippi',
+    'New Jersey',
+    'Tennessee',
+  ])
+);
 
 const multiFilter = (data) => {
   return data.filter((item) => {
