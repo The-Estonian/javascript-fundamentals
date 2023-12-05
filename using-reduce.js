@@ -1,12 +1,10 @@
 const adder = (data, leftover = 0) => {
-  if (data.length == 0) {
-    return [];
-  }
   return data.reduce((hold, run) => hold + run, leftover);
 };
 
 // console.log(adder([1, 2, 3, 4])); // 10
-console.log(adder([9, 24, 7, 11, 3], 10)); // 64
+// console.log(adder([9, 24, 7, 11, 3], 10)); // 64
+console.log(adder([]), 0); // 0
 
 const sumOrMul = (data) => {
   return data.reduce((hold, run) => {
