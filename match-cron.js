@@ -2,7 +2,7 @@ const matchCron = (str, date) => {
   let minute = date.getMinutes();
   let hour = date.getHours();
   let day = date.getDate();
-  let month = date.getMonth();
+  let month = date.getMonth() + 1;
   let year = date.getFullYear();
   let stringSplitter = str.split(' ');
   let check1 = false;
@@ -35,4 +35,5 @@ const matchCron = (str, date) => {
 // console.log(matchCron('9 * * * *', new Date('2020-05-30 18:09:00'))); // -> true
 // console.log(matchCron('9 * * * *', new Date('2020-05-30 19:09:00'))); // -> true
 // console.log(matchCron('9 * * * *', new Date('2020-05-30 19:21:00'))); // -> false
-// console.log(matchCron('* * * * 1', new Date('2020-06-01 00:00:00'))); // -> false
+// console.log(matchCron('* * * * 1', new Date('2020-06-01 00:00:00'))); // -> true
+// console.log(matchCron('* * * 2 *', new Date('2021-02-01 00:00:00'))); // -> true
