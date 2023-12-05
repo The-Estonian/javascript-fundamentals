@@ -37,13 +37,14 @@ const fahrenheitToCelsius = (data) => {
 
 console.log(fahrenheitToCelsius(['68°F', '59°F', '25°F'])); // -> ['20°C', '15°C', '-4°C']
 
-const trimTemp = (data) => {
-  return data.map((item) => {
+const trimTemp = (arr) => {
+  return arr.map((item) => {
+    let trimmedTemp = item.temperature.replace(/\s/g, '');
     return {
       city: item.city,
-      temperature: item.temperature.trim(),
       state: item.state,
-      region: item.state,
+      region: item.region,
+      temperature: trimmedTemp,
     };
   });
 };
