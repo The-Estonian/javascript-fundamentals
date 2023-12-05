@@ -26,14 +26,14 @@ const isLeapYear = (date) => {
 const isLastDayOfMonth = (date) => {
   let year = new Date(date).getFullYear();
   let month = new Date(date).getMonth();
-  let nextMonth = new Date(year, month + 1, 1);
 
-  lastDay = new Date(nextMonth.getTime() - 1);
+  lastDay = new Date(year, month + 1, 0);
 
-  return lastDay.getDate();
+  return lastDay.getDate() === date.getDate();
 };
 
 // console.log(isFriday(new Date('December 2, 2023')));
 // console.log(isWeekend(new Date('December 3, 2023')));
 // console.log(isLeapYear(new Date('December 3, 2024')));
-console.log(isLastDayOfMonth(new Date('December 30, 2023')));
+// console.log(isLastDayOfMonth(new Date('December 30, 2023')));
+console.log(isLastDayOfMonth(new Date('December 31, 2023')));
