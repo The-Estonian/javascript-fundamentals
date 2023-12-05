@@ -1,3 +1,5 @@
 const forEach = (arr, func) => {
-  return arr.map((item) => func(item));
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = func(arr[i]);
+  }
 };
