@@ -1,4 +1,7 @@
 const adder = (data, leftover = 0) => {
+  if (data.length == 0) {
+    return 0;
+  }
   return (
     leftover +
     data.reduce((start, end) => {
