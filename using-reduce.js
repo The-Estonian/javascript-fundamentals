@@ -7,18 +7,13 @@ const adder = (data, leftover = 0) => {
 // console.log(adder([]), 0); // 0
 
 const sumOrMul = (data, leftover = 0) => {
-  if (data[0] % 2 == 0) {
-    data[0] *= leftover;
-  } else {
-    data[0] += leftover;
-  }
   return data.reduce((hold, run) => {
     if (run % 2 == 0) {
       return hold * run;
     } else {
       return hold + run;
     }
-  });
+  }, leftover);
 };
 
 // console.log(sumOrMul([29, 23, 3, 2, 25])); // 135
