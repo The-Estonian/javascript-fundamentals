@@ -9,7 +9,7 @@ const oneLongWord = (data) => {
 };
 
 const noLongWords = (data) => {
-  return data.some((item) => {
+  return data.every((item) => {
     return !(item.length >= 7);
   });
 };
