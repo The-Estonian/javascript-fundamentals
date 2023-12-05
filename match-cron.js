@@ -16,13 +16,13 @@ const matchCron = (str, date) => {
   if (stringSplitter[1] == '*' || stringSplitter[1] == hour) {
     check2 = true;
   }
-  if (stringSplitter[2] == '*' || stringSplitter[2] == day) {
+  if (stringSplitter[4] == '*' || stringSplitter[4] == day) {
     check3 = true;
   }
   if (stringSplitter[3] == '*' || stringSplitter[3] == month) {
     check4 = true;
   }
-  if (stringSplitter[4] == '*' || stringSplitter[4] == year) {
+  if (stringSplitter[2] == '*' || stringSplitter[2] == year) {
     check5 = true;
   }
 
@@ -32,6 +32,7 @@ const matchCron = (str, date) => {
   return false;
 };
 
-console.log(matchCron('9 * * * *', new Date('2020-05-30 18:09:00'))); // -> true
-console.log(matchCron('9 * * * *', new Date('2020-05-30 19:09:00'))); // -> true
-console.log(matchCron('9 * * * *', new Date('2020-05-30 19:21:00'))); // -> false
+// console.log(matchCron('9 * * * *', new Date('2020-05-30 18:09:00'))); // -> true
+// console.log(matchCron('9 * * * *', new Date('2020-05-30 19:09:00'))); // -> true
+// console.log(matchCron('9 * * * *', new Date('2020-05-30 19:21:00'))); // -> false
+// console.log(matchCron('* * * * 1', new Date('2020-06-01 00:00:00'))); // -> false
