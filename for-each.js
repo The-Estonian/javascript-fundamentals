@@ -1,3 +1,3 @@
 const forEach = (arr, func) => {
-  return arr.forEach((item) => func(item));
+  return arr.map((item) => func(item));
 };
