@@ -65,9 +65,9 @@ const tempForecasts = (data) => {
     for (let i = 0; i < words.length; i++) {
       words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
     }
-    return `${Math.floor((item.temperature.slice(0, -2) - 32) * (5 / 9))}°Celsius in ${
-      item.city
-    }, ${words.join(' ')}`;
+    return `${Math.floor(
+      ((parseInt(item.temperature.replace(/\s/g, '')) - 32) * 5) / 9
+    )}°Celsius in ${item.city}, ${words.join(' ')}`;
   });
 };
 
