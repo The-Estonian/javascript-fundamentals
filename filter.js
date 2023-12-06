@@ -18,7 +18,7 @@ const reject = (arr, func) => {
   return newArr;
 };
 
-const partition = () => {
+const partition = (arr, func) => {
   let winners = [];
   let outcast = [];
   for (let i = 0; i < arr.length; i++) {
@@ -28,9 +28,17 @@ const partition = () => {
       outcast.push(arr[i]);
     }
   }
-  return [winners, outcast];
+  let returnArr = [];
+  returnArr.push(winners);
+  returnArr.push(outcast);
+  return returnArr;
 };
 
 // const check1 = (el) => el % 2 === 0;
 
-// console.log(filter([10, -10, 20, 86, 3, 32, 450, 950, 66, 150], check1));
+// console.log(
+//   partition(
+//     [10, -10, 20, 86, 2, 32, 450, 950, 66, 150, -95, 15, 3, 5, 33, 45],
+//     check1
+//   )
+// );
