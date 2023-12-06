@@ -14,12 +14,23 @@ const foldRight = (arr, func, acc) => {
   return baseValue;
 };
 
-const reduce = (arr, func, acc) => {
+const reduce = (arr, func) => {
   if (arr.length === 0) {
     throw new Error('Arr < 0');
   }
   let baseValue = arr[0];
   for (let i = 1; i < arr.length; i++) {
+    baseValue = func(baseValue, arr[i]);
+  }
+  return baseValue;
+};
+
+const reduceRight = (arr, func) => {
+  if (arr.length === 0) {
+    throw new Error('Arr < 0');
+  }
+  let baseValue = arr[0];
+  for (let i = arr.length - 1; i >= 0; i--) {
     baseValue = func(baseValue, arr[i]);
   }
   return baseValue;
