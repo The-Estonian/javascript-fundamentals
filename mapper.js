@@ -9,7 +9,7 @@ const map = (arr, func) => {
 const flatMap = (arr, func) => {
   let newArr = [];
   for (let i = 0; i < arr.length; i++) {
-    let middleman = func(arr[i]);
+    let middleman = func(arr[i], i, arr);
     if (Array.isArray(middleman)) {
       for (let j = 0; j < middleman.length; j++) {
         newArr.push(middleman[j]);
