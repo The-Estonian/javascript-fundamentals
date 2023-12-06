@@ -1,8 +1,9 @@
 const map = (arr, func) => {
+  let newArr = [];
   for (let i = 0; i < arr.length; i++) {
-    arr[i] = func(arr[i]);
+    newArr.push(func(arr[i]), i, arr);
   }
-  return arr;
+  return newArr;
 };
 
 const flatMap = (arr, func) => {
