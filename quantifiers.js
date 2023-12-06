@@ -10,7 +10,7 @@ const every = (arr, func) => {
 
 const some = (arr, func) => {
   for (let i = 0; i < arr.length; i++) {
-    if (!func(arr[i])) {
+    if (func(arr[i])) {
       return true;
     }
   }
@@ -21,6 +21,8 @@ const none = (arr, func) => {
   let trigger = true;
   for (let i = 0; i < arr.length; i++) {
     if (!func(arr[i])) {
+      trigger = true;
+    } else {
       return false;
     }
   }
