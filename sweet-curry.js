@@ -1,4 +1,4 @@
-const add = (n) => {
+const mult2 = (n) => {
   return (n1) => {
     return n * n1;
   };
