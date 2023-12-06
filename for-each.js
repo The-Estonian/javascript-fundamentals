@@ -1,8 +1,7 @@
-const forEach = (arr, func) => {
+const forEach = (arr, func, index) => {
   for (let i = 0; i < arr.length; i++) {
-    arr[i] = func(arr[i], i);
+    arr[i] = func(arr[i], index, arr);
   }
-  return undefined;
 };
 
 // let arr = [1, 2, 3, 4, 5, Math.random(), 7, 10, -10, 20, -95];
