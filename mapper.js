@@ -16,8 +16,8 @@ const flatMap = (arr, func) => {
   return newArr;
 };
 
-const testFunc = (n) => [n, n];
-const add1 = (el) => el + 1;
+// const testFunc = (n) => [n, n];
+// const add1 = (el) => el + 1;
 
-console.log(map([11, -9, 21, -94, 87, 103, 36, 90, 111], add1));
-console.log(flatMap([1, 2, 3], testFunc));
+// console.log(map([11, -9, 21, -94, 87, 103, 36, 90, 111], add1));
+// console.log(flatMap([1, 2, 3], testFunc));
