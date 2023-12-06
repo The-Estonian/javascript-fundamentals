@@ -1,6 +1,6 @@
 const forEach = (arr, func, index) => {
   for (let i = 0; i < arr.length; i++) {
-    arr[i] = func(arr[i], index, arr);
+    func(arr[i], index, arr);
   }
 };
 
