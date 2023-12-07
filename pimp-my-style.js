@@ -6,7 +6,10 @@ export const pimp = (e) => {
   } else {
     for (let i = 0; i < styles.length; i++) {
       if (e.target.classList[e.target.classList.length - 1] === 'unpimp') {
-        if (e.target.classList[e.target.classList.length - 2] === 'button') {
+        if (e.target.classList[e.target.classList.length - 3] === 'button') {
+          e.target.classList.remove(
+            e.target.classList[e.target.classList.length - 2]
+          );
           e.target.classList.remove(
             e.target.classList[e.target.classList.length - 1]
           );
