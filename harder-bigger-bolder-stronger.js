@@ -39,7 +39,7 @@ export const generateLetters = () => {
     const element = document.createElement('div');
     element.innerHTML = alphabet[random(0, 25)];
 
-    element.style.fontSize = 10 + i + "px";
+    element.style.fontSize = 11 + i + "px";
 
     if (i < 40) {
         element.style.fontWeight = 300;
