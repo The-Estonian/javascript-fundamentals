@@ -10,7 +10,7 @@ export const build = (n) => {
         brick.setAttribute('id', 'brick-' + index);
 
         if (index % 3 === 2) {
-          brick.setAttribute('foundation', true);
+          brick.setAttribute('dataset', 'foundation: true');
         }
 
         console.log('TIMEOUT');
