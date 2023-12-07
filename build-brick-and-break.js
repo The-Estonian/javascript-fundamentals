@@ -14,7 +14,7 @@ export const build = (n) => {
         }
         body.appendChild(brick);
       },
-      i * 100,
+      i * 10,
       i
     );
   }
@@ -22,11 +22,13 @@ export const build = (n) => {
 
 export const repair = (...ids) => {
   for (let i = 0; i < ids.length; i++) {
+    console.log(ids[i]);
     let selected = document.getElementById(ids[i]);
-    if (selected.getAttribute('foundation') === 'true') {
-      selected.setAttribute('repaired', 'in progress');
+    console.log(selected);
+    if (selected.getAttribute('foundation') === true) {
+      selected.dataset.repaired = 'in progress';
     } else {
-      selected.setAttribute('repaired', 'true');
+      selected.dataset.repaired = true;
     }
   }
 };
