@@ -1,5 +1,5 @@
 const addWeek = (obj) => {
-  var dayNames = [
+  let dayNames = [
     'Monday',
     'Tuesday',
     'Wednesday',
@@ -16,16 +16,16 @@ const addWeek = (obj) => {
     'secondSunday',
   ];
 
-  var currentDate = new Date(obj);
-  var epochToZero = currentDate.getTime() + 62135596800000;
-  var getMSinDay = 24 * 60 * 60 * 1000;
-  var getDaysFromZeroEpoch = epochToZero / getMSinDay;
+  let currentDate = new Date(obj);
+  let epochToZero = currentDate.getTime() + 62135596800000;
+  let getMSinDay = 24 * 60 * 60 * 1000;
+  let getDaysFromZeroEpoch = epochToZero / getMSinDay;
   //   console.log(getDaysFromZeroEpoch%7);
   return dayNames[getDaysFromZeroEpoch % 14];
 };
 
 const timeTravel = (obj) => {
-  var modDate = new Date(obj.date);
+  let modDate = new Date(obj.date);
   modDate.setHours(obj.hour, obj.minute, obj.second);
   return modDate;
 };
@@ -41,7 +41,7 @@ const timeTravel = (obj) => {
 
 //Fri May 29 2020 21:22:22 GMT+0100 (Western European Summer Time)
 
-console.log(addWeek(new Date('0001-01-01'))); // monday
+// console.log(addWeek(new Date('0001-01-01'))); // monday
 // console.log(addWeek(new Date('0001-01-02'))); // tuesday
 // console.log(addWeek(new Date('0001-01-03'))); // wednesday
 // console.log(addWeek(new Date('0001-01-07'))); // sunday

@@ -16,3 +16,4 @@ function findIP(str) {
 // console.log(findIP(testarr));
 // testarr1 = '192.168.1.123:8080, 172.01.123.254:1234, 0.0.0.0:68768';
 // console.log(findIP(testarr1));
+// https://regexr.com/
