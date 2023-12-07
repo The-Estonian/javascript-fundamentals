@@ -10,10 +10,8 @@ export const build = (n) => {
         brick.setAttribute('id', 'brick-' + index);
 
         if (index % 3 === 2) {
-          brick.setAttribute('dataset', 'foundation: true');
+          brick.dataset.foundation = true;
         }
-
-        console.log('TIMEOUT');
         body.appendChild(brick);
       },
       i * 100,
