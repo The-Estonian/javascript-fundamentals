@@ -16,7 +16,7 @@ export const build = (n) => {
         console.log('TIMEOUT');
         body.appendChild(brick);
       },
-      i * 10,
+      i * 100,
       i
     );
   }
