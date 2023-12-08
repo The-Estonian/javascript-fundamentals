@@ -16,7 +16,7 @@ export const compose = () => {
         body.removeChild(body.lastElementChild);
       }
     }
-    if (e.key === 'Enter') {
+    if (e.key === 'Escape') {
       body.innerHTML = '';
     }
   });
