@@ -47,7 +47,7 @@ export const moveCircle = () => {
         recLeft > coords.left &&
         recRight < coords.right - 50
       ) {
-        changeChild.style.backgroundColor = 'var(--purple)';
+        changeChild.style.background = 'var(--purple)';
         triggered = true;
       }
     }
