@@ -15,6 +15,7 @@ export const createCircle = () => {
 export const moveCircle = () => {
   const body = document.querySelector('body');
   const box = document.querySelector('.box');
+  let triggered = false;
   const moveBall = (e) => {
     if (body.childNodes.length > 4) {
       let changeChild = body.lastChild;
@@ -26,15 +27,28 @@ export const moveCircle = () => {
       let recBot = parseInt(changeChild.style.top.slice(0, -2));
       let recLeft = parseInt(changeChild.style.left.slice(0, -2));
       let recRight = parseInt(changeChild.style.left.slice(0, -2));
+      if (triggered) {
+        if (recTop < coords.top) {
+          changeChild.style.top = coords.top + 'px';
+        }
+        if (recBot > coords.bottom - 50) {
+          changeChild.style.top = coords.bottom - 50 + 'px';
+        }
+        if (recLeft < coords.left) {
+          changeChild.style.left = coords.left + 'px';
+        }
+        if (recRight > coords.right - 50) {
+          changeChild.style.left = coords.right - 50 + 'px';
+        }
+      }
       if (
-        recTop >= coords.top &&
-        recBot <= coords.bottom - 50 &&
-        recLeft >= coords.left &&
-        recRight <= coords.right - 50
+        recTop > coords.top &&
+        recBot < coords.bottom - 50 &&
+        recLeft > coords.left &&
+        recRight < coords.right - 50
       ) {
-        console.log('MIDDLE');
         changeChild.style.backgroundColor = 'var(--purple)';
-        body.removeEventListener('mousemove', moveBall);
+        triggered = true;
       }
     }
   };
