@@ -1,42 +1,41 @@
-// document.createElement('link');
-//  linkToAdd.rel = 'stylesheet';
-// document.head.appendChild(linkToAdd);
-// .blue {
-//   background: blue;
-// }
 import { colors } from './fifty-shades-of-cold.data.js';
 
 export const generateClasses = () => {
-  let newStyles = document.createElement('style');
-  newStyles.rel = 'stylesheet';
-  let styleInjection = '';
-  for (let i = 0; i < colors.length; i++) {
-    styleInjection += `.${colors[i]} {background: ${colors[i]};} `;
-  }
-  newStyles.innerHTML = styleInjection;
-  document.head.appendChild(newStyles);
+  const styleTag = document.createElement('style');
+  document.getElementsByTagName('head')[0].appendChild(styleTag);
+  colors.forEach((color) => {
+    styleTag.innerHTML += `.${color} { background: ${color}; }\n`;
+    console.log(color);
+  });
 };
 
-// aqua, blue, turquoise, green, cyan, navy or purple
 export const generateColdShades = () => {
-  const currentBody = document.querySelector('body');
-  const selectedColors = [
-    'aqua',
-    'blue',
-    'turquoise',
-    'green',
-    'cyan',
-    'navy',
-    'purple',
-  ];
-  for (let i = 0; i < colors.length; i++) {
-    if (selectedColors.indexOf(colors[i]) > -1) {
-      let newDiv = document.createElement('div');
-      newDiv.classList.add(colors[i]);
-      newDiv.innerHTML = colors[i];
-      currentBody.appendChild(newDiv);
+  let body = document.querySelector('body');
+  colors.forEach((color) => {
+    if (
+      color.includes('aqua') ||
+      color.includes('blue') ||
+      color.includes('turquoise') ||
+      color.includes('green') ||
+      color.includes('cyan') ||
+      color.includes('navy') ||
+      color.includes('purple')
+    ) {
+      const element = document.createElement('div');
+      element.className = color;
+      element.textContent = color;
+      body.appendChild(element);
+    }
+  });
+};
+
+export const choseShade = (shade) => {
+  const body = document.querySelector('body');
+  const color = body.getElementsByTagName('div');
+
+  for (const div of color) {
+    if (div.className !== shade) {
+      div.className = shade;
     }
   }
 };
-
-export const choseShade = () => {};
