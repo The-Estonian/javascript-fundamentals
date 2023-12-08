@@ -4,7 +4,7 @@ export const createCircle = () => {
   body.addEventListener('click', (e) => {
     let circle = document.createElement('div');
     circle.classList.add('circle');
-    circle.style.backgroundColor = 'white';
+    circle.style.background = 'white';
     circle.style.left = e.clientX - 25 + 'px';
     circle.style.top = e.clientY - 25 + 'px';
     body.appendChild(circle);
