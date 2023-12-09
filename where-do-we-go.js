@@ -65,20 +65,14 @@ export const explore = () => {
   picBody.appendChild(compass);
   let multiply = 1;
   document.addEventListener('scroll', (e) => {
-    console.log(window.innerHeight);
     const linkSection = document.querySelector('a');
-    if (
-      window.scrollY >
-      Math.floor((window.innerHeight * multiply-5) - (window.innerHeight / 2))
-    ) {
-      linkSection.innerHTML = `${nameArray[multiply]}\n${coordArray[multiply]}`;
-      linkSection.style.color = colorArray[multiply];
-      linkSection.href = `https://www.google.com/maps/place/${coordArray[multiply]}`;
-      multiply++;
-    } else {
-      multiply--;
-    }
+    let currentScrollbar = window.scrollY + window.innerHeight / 2;
+    let indexing = Math.floor(currentScrollbar / window.innerHeight);
+    linkSection.innerHTML = `${nameArray[indexing]}\n${coordArray[indexing]}`;
+    linkSection.style.color = colorArray[indexing];
+    linkSection.href = `https://www.google.com/maps/place/${coordArray[indexing]}`;
   });
+
   let oldScroll = 0;
   window.onscroll = (e) => {
     const compass = document.querySelector('.direction');
