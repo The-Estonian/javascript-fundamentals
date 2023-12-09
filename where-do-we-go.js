@@ -65,12 +65,11 @@ export const explore = () => {
   picBody.appendChild(compass);
   let multiply = 1;
   document.addEventListener('scroll', (e) => {
-    const linkSection = document.querySelector('a');
     console.log(window.innerHeight);
-    console.log(window.scrollY);
+    const linkSection = document.querySelector('a');
     if (
       window.scrollY >
-      Math.round(window.innerHeight * multiply - window.innerHeight / 2 - 1)
+      Math.floor((window.innerHeight * multiply) - (window.innerHeight / 2-5))
     ) {
       linkSection.innerHTML = `${nameArray[multiply]}\n${coordArray[multiply]}`;
       linkSection.style.color = colorArray[multiply];
