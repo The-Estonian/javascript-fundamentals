@@ -45,7 +45,7 @@ export const explore = () => {
   for (let i = 0; i < picArray.length; i++) {
     const picSection = document.createElement('section');
 
-    picSection.style.backgroundImage = `url(./where-do-we-go_images/${picArray[i]})`;
+    picSection.style.background = `url(./where-do-we-go_images/${picArray[i]})`;
 
     picBody.appendChild(picSection);
   }
