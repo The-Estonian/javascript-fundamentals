@@ -69,7 +69,7 @@ export const explore = () => {
     const linkSection = document.querySelector('a');
     if (
       window.scrollY >
-      Math.floor((window.innerHeight * multiply) - (window.innerHeight / 2-5))
+      Math.floor((window.innerHeight * multiply) - (window.innerHeight / 2+2))
     ) {
       linkSection.innerHTML = `${nameArray[multiply]}\n${coordArray[multiply]}`;
       linkSection.style.color = colorArray[multiply];
