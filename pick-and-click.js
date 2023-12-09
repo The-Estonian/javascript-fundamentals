@@ -29,13 +29,13 @@ export const pick = () => {
     windowBody.style.background = `hsl(${pageHue}, 50%, ${pageLuminosity}%)`;
     // console.log('Mouse X: ', e.pageX); // mouse location on X axis
     // console.log('Mouse Y: ', e.pageY); // mouse location on Y axis
-    axisX.setAttribute('x1', '0');
+    axisX.setAttribute('x1', 0);
     axisX.setAttribute('y1', e.pageY);
     axisX.setAttribute('x2', window.innerWidth);
     axisX.setAttribute('y2', e.pageY);
 
     axisY.setAttribute('x1', e.pageX);
-    axisY.setAttribute('y1', '0');
+    axisY.setAttribute('y1', 0);
     axisY.setAttribute('x2', e.pageX);
     axisY.setAttribute('y2', window.innerHeight);
   };
