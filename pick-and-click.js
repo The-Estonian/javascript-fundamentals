@@ -29,15 +29,15 @@ export const pick = () => {
     windowBody.style.background = `hsl(${pageHue}, 50%, ${pageLuminosity}%)`;
     // console.log('Mouse X: ', e.pageX); // mouse location on X axis
     // console.log('Mouse Y: ', e.pageY); // mouse location on Y axis
-    axisX.setAttribute('x1', 0);
-    axisX.setAttribute('y1', e.pageY);
-    axisX.setAttribute('x2', window.innerWidth);
-    axisX.setAttribute('y2', e.pageY);
+    axisY.setAttribute('x1', 0);
+    axisY.setAttribute('y1', e.pageY);
+    axisY.setAttribute('x2', window.innerWidth);
+    axisY.setAttribute('y2', e.pageY);
 
-    axisY.setAttribute('x1', e.pageX);
-    axisY.setAttribute('y1', 0);
-    axisY.setAttribute('x2', e.pageX);
-    axisY.setAttribute('y2', window.innerHeight);
+    axisX.setAttribute('x1', e.pageX);
+    axisX.setAttribute('y1', 0);
+    axisX.setAttribute('x2', e.pageX);
+    axisX.setAttribute('y2', window.innerHeight);
   };
   windowBody.appendChild(middleBox);
   windowBody.appendChild(hueBox);
@@ -45,6 +45,10 @@ export const pick = () => {
   windowBody.appendChild(crosshairSVG);
   windowBody.addEventListener('mousemove', colorize);
   windowBody.addEventListener('click', (e) => {
+    console.log(axisX.getAttribute('x1'));
+    console.log(axisX.getAttribute('x2'));
+    console.log();
+    console.log();
     let pageHue = Math.round(e.pageX / (window.innerWidth / 360));
     let pageLuminosity = Math.round(e.pageY / (window.innerHeight / 100));
     navigator.clipboard.writeText(`hsl(${pageHue}, 50%, ${pageLuminosity}%)`);
