@@ -13,17 +13,8 @@ export const pick = () => {
     'svg'
   );
   const axisX = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-  axisX.setAttribute('x1', '0');
-  axisX.setAttribute('y1', '0');
-  axisX.setAttribute('x2', '0');
-  axisX.setAttribute('y2', '100%');
   axisX.setAttribute('id', 'axisX');
-
   const axisY = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-  axisY.setAttribute('x1', '0');
-  axisY.setAttribute('y1', '0');
-  axisY.setAttribute('x2', '100%');
-  axisY.setAttribute('y2', '0');
   axisY.setAttribute('id', 'axisY');
 
   crosshairSVG.appendChild(axisX);
@@ -40,13 +31,13 @@ export const pick = () => {
     // console.log('Mouse Y: ', e.pageY); // mouse location on Y axis
     axisX.setAttribute('x1', '0');
     axisX.setAttribute('y1', e.pageY);
-    axisX.setAttribute('x2', '100%');
+    axisX.setAttribute('x2', window.innerWidth);
     axisX.setAttribute('y2', e.pageY);
 
     axisY.setAttribute('x1', e.pageX);
     axisY.setAttribute('y1', '0');
     axisY.setAttribute('x2', e.pageX);
-    axisY.setAttribute('y2', '100%');
+    axisY.setAttribute('y2', window.innerHeight);
   };
   windowBody.appendChild(middleBox);
   windowBody.appendChild(hueBox);
