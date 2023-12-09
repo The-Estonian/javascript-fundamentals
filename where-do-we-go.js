@@ -68,12 +68,11 @@ export const explore = () => {
     const linkSection = document.querySelector('a');
     if (
       window.scrollY >
-      window.innerHeight * multiply - window.innerHeight / 2
+      window.innerHeight * multiply - window.innerHeight / 2 - 1
     ) {
       linkSection.innerHTML = `${nameArray[multiply]}\n${coordArray[multiply]}`;
       linkSection.style.color = colorArray[multiply];
       linkSection.href = `https://www.google.com/maps/place/${coordArray[multiply]}`;
-      //   let
       multiply++;
     } else {
       multiply--;
