@@ -17,14 +17,14 @@ export const pick = () => {
   axisX.setAttribute('y1', '0');
   axisX.setAttribute('x2', '0');
   axisX.setAttribute('y2', '100%');
-  axisX.setAttribute('class', 'crosshair-line');
+  axisX.setAttribute('id', 'axisX');
 
   const axisY = document.createElementNS('http://www.w3.org/2000/svg', 'line');
   axisY.setAttribute('x1', '0');
   axisY.setAttribute('y1', '0');
   axisY.setAttribute('x2', '100%');
   axisY.setAttribute('y2', '0');
-  axisY.setAttribute('class', 'crosshair-line');
+  axisY.setAttribute('id', 'axisY');
 
   crosshairSVG.appendChild(axisX);
   crosshairSVG.appendChild(axisY);
