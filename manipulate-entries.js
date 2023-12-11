@@ -27,6 +27,7 @@ const reduceEntries = (obj, func, i) => {
 
 const totalCalories = (objEntry) => {
   let caloriesCounter = 0;
+  console.log(objEntry);
   for (const [key, value] of Object.entries(objEntry)) {
     if (nutritionDB.hasOwnProperty(key)) {
       caloriesCounter += (nutritionDB[key].calories * value) / 100;
@@ -120,6 +121,7 @@ const cartTotal = (objEntry) => {
 
 // const groceriesCart = { orange: 500, oil: 20, sugar: 480 };
 // const groceriesCart1 = { oil: 500, onion: 230, garlic: 220, paprika: 480 };
+// const groceriesCart2 = { tomato: 700, vinegar: 120, orange: 450 };
 
 // console.log(filterEntries(groceriesCart1, ([, v]) => v < 300)); // { onion: 230, garlic: 220 }
 
@@ -140,7 +142,7 @@ const cartTotal = (objEntry) => {
 // console.log(reduceEntries(groceriesCart1, (acc, [k, v]) => acc + k + v, '')); //'oil500onion230garlic220paprika480'
 
 // console.log('Total calories:');
-// console.log(totalCalories(groceriesCart1));
+// console.log(totalCalories(groceriesCart2));
 // console.log('Items with low carbs:');
 // console.log(lowCarbs(groceriesCart1));
 // console.log('Total cart nutritional facts:');
