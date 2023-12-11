@@ -16,7 +16,7 @@ const mapValues = (obj, func) => {
   return returnObj;
 };
 
-const reduceValues = (obj, func, i) => {
+const reduceValues = (obj, func, i = 0) => {
   let returnObj = [];
   for (const [key, value] of Object.entries(obj)) {
     returnObj.push(value);
