@@ -39,15 +39,15 @@ const totalCalories = (objEntry) => {
 // + '240.0'
 // - 1921.4
 const lowCarbs = (objEntry) => {
-    let tempObj = objEntry;
+  let newObj = {};
   for (const [key, value] of Object.entries(objEntry)) {
     if (nutritionDB.hasOwnProperty(key)) {
       if ((nutritionDB[key].carbs * value) / 100 > 50) {
-        delete tempObj[key];
+        newObj[key] = value;
       }
     }
   }
-  return tempObj;
+  return newObj;
 };
 const cartTotal = (objEntry) => {
   let returnCart = {};
