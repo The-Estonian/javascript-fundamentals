@@ -21,11 +21,10 @@ const reduceKeys = (obj, func, i = '') => {
   for (const [key, value] of Object.entries(obj)) {
     newArray.push(key);
   }
-  if (i == ':') {
-    return newArray.reduce(func, i);
+  if (i.length == 0 && i != null) {
+    return newArray.reduce(func);
   }
-  //   console.log(newArray);
-  return newArray.reduce(func);
+  return newArray.reduce(func, i);
 };
 
 // const nutrients = {
@@ -44,7 +43,10 @@ const reduceKeys = (obj, func, i = '') => {
 // // // output: { -carbohydrates: 12, -protein: 20, -fat: 5 }
 
 // console.log(reduceKeys(nutrients, (acc, cr) => `${acc}${cr}:`, ':'));
-// output: carbohydrates, protein, fat;
+
+// console.log(
+//   reduceKeys(nutrients, (acc, cr) => (acc += (cr.length <= 4) & 1), 0)
+// );
 
 // console.log(reduceKeys(nutrients, (acc, cr) => acc.concat(', ', cr)));
 
