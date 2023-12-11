@@ -21,7 +21,7 @@ const reduceKeys = (obj, func, i = '') => {
   for (const [key, value] of Object.entries(obj)) {
     newArray.push(key);
   }
-  if (i.length == 0 && i != null) {
+  if (i !== null && i.length == 0) {
     return newArray.reduce(func);
   }
   return newArray.reduce(func, i);
