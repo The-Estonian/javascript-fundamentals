@@ -16,12 +16,15 @@ const mapKeys = (obj, func) => {
   return returnObj;
 };
 
-const reduceKeys = (obj, func, i="") => {
+const reduceKeys = (obj, func, i = '') => {
   let newArray = [];
   for (const [key, value] of Object.entries(obj)) {
     newArray.push(key);
   }
-//   console.log(newArray);
+  if (i == ':') {
+    return newArray.reduce(func, i);
+  }
+  //   console.log(newArray);
   return newArray.reduce(func);
 };
 
