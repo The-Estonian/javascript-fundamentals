@@ -16,26 +16,22 @@ const mapKeys = (obj, func) => {
   return returnObj;
 };
 
-const reduceKeys = (obj, func) => {
-  if (Array.isArray(obj)) {
-    let returnString = '';
-    let [funci, index] = func(obj);
-    if (index == ', ') {
-      return obj.reduce(func, 's').slice(3);
-    } else if (index == ':') {
-      return ':' + obj.reduce(func, 's');
-    }
-    returnString = obj.reduce(func);
-    return returnString;
-  }
-  let returnObj = [];
+const reduceKeys = (obj, func, i) => {
+  let newArray = [];
   for (const [key, value] of Object.entries(obj)) {
-    returnObj.push(key);
+    newArray.push(key);
   }
-  return returnObj.reduce(func);
+  return newArray.reduce(func, i);
 };
 
-// const nutrients = ['vinegar, sugar, oil, onion, garlic, paprika'];
+const nutrients = {
+  vinegar: 80,
+  sugar: 100,
+  oil: 50,
+  onion: 200,
+  garlic: 22,
+  paprika: 4,
+};
 
 // // console.log(filterKeys(nutrients, (key) => /protein/.test(key)))
 // // // output: { protein: 20 }
@@ -43,8 +39,10 @@ const reduceKeys = (obj, func) => {
 // // console.log(mapKeys(nutrients, (k) => `-${k}`))
 // // // output: { -carbohydrates: 12, -protein: 20, -fat: 5 }
 
-// console.log(reduceKeys(nutrients, (acc, cr) => acc.concat(', ', cr)));
+// console.log(reduceKeys(nutrients, (acc, cr) => `${acc}${cr}:`, ':'));
 // output: carbohydrates, protein, fat;
+
+console.log(reduceKeys(nutrients, (acc, cr) => `${acc}${cr}:`, ':'));
 
 // // // eq(
 // //     reduceKeys(ctx.cart, (acc, cr) => `${acc}${cr}:`, ':'),
@@ -61,3 +59,7 @@ const reduceKeys = (obj, func) => {
 //     if (res.slice(0, 2) === ", ") res = res.slice(2);
 //     if (undef && res[0] === ":") res = res.slice(1);
 // }
+
+//Object.entries(obj);
+//Object.keys(obj);
+//Object.values(obj);
