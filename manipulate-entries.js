@@ -55,13 +55,26 @@ const cartTotal = (objEntry) => {
     if (nutritionDB.hasOwnProperty(key)) {
       let tempObj = {};
       for (const [innerKey, innerValue] of Object.entries(nutritionDB[key])) {
-        tempObj[innerKey] = (innerValue * value) / 100;
+        tempObj[innerKey] = Math.round(innerValue * value * 10) / 1000;
       }
       returnCart[key] = tempObj;
     }
   }
   return returnCart;
 };
+
+// {
+//   garlic: {
+// ...
+//     calories: 1353.6,
+//     carbs: 259.152,
+// +     fat: 61.87200000000001,
+// -     fat: 61.872,
+//     fiber: 0,
+// +     protein: 67.87200000000001,
+// -     protein: 67.872,
+//     sugar: 4.8
+//   }
 
 //Object.entries(obj);
 //Object.keys(obj);
@@ -124,6 +137,41 @@ const cartTotal = (objEntry) => {
 // const groceriesCart1 = { oil: 500, onion: 230, garlic: 220, paprika: 480 };
 // const groceriesCart2 = { tomato: 700, vinegar: 120, orange: 450 };
 
+// const total1 = {
+//   oil: {
+//     calories: 240,
+//     protein: 0,
+//     carbs: 0,
+//     sugar: 615,
+//     fiber: 0,
+//     fat: 755,
+//   },
+//   onion: {
+//     calories: 0,
+//     protein: 2.3,
+//     carbs: 20.7,
+//     sugar: 0,
+//     fiber: 0,
+//     fat: 0,
+//   },
+//   garlic: {
+//     calories: 327.8,
+//     protein: 14.08,
+//     carbs: 72.6,
+//     sugar: 2.2,
+//     fiber: 4.62,
+//     fat: 1.1,
+//   },
+//   paprika: {
+//     calories: 1353.6,
+//     protein: 67.872,
+//     carbs: 259.152,
+//     sugar: 4.8,
+//     fiber: 0,
+//     fat: 61.872,
+//   },
+// };
+
 // console.log(filterEntries(groceriesCart1, ([, v]) => v < 300)); // { onion: 230, garlic: 220 }
 
 // console.log(
@@ -147,4 +195,4 @@ const cartTotal = (objEntry) => {
 // console.log('Items with low carbs:');
 // console.log(lowCarbs(groceriesCart1));
 // console.log('Total cart nutritional facts:');
-// console.log(cartTotal(groceriesCart));
+// console.log(cartTotal(groceriesCart1));
