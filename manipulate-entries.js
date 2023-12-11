@@ -42,7 +42,7 @@ const lowCarbs = (objEntry) => {
   let newObj = {};
   for (const [key, value] of Object.entries(objEntry)) {
     if (nutritionDB.hasOwnProperty(key)) {
-      if ((nutritionDB[key].carbs * value) / 100 > 50) {
+      if (!((nutritionDB[key].carbs * value) / 100 > 50)) {
         newObj[key] = value;
       }
     }
