@@ -4,6 +4,9 @@ const isObject = (item) => {
 
 const replica = (target, ...sources) => {
   if (!sources.length) return target;
+  if (!isObject(sources)) {
+    return Object.assign(target, ...sources);
+  }
   const source = sources.shift();
 
   if (isObject(target) && isObject(source)) {
@@ -20,7 +23,7 @@ const replica = (target, ...sources) => {
   return replica(target, ...sources);
 };
 // Object.prototype.hasOwnProperty();
-// console.log(replica({ con: console.log }, { reg: /hello/ }));
+console.log(replica({ con: console.log }, { reg: /hello/ }));
 
 // {
 //   con: console.log,
