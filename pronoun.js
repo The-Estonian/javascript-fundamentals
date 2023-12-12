@@ -1,5 +1,6 @@
 const pronoun = (str) => {
-  const arr = str.split('\n').join(' ').split(' ');
+  const strReg = str.replace(/,/g, ' ');
+  const arr = strReg.split('\n').join(' ').split(' ');
   const pronounArr = ['i', 'you', 'he', 'she', 'it', 'they', 'we'];
   const megaObject = {};
   for (let x = 0; x < arr.length; x++) {
@@ -132,7 +133,7 @@ const pronoun = (str) => {
 
 // console.log(
 //   pronoun(`The seal method seals an object, preventing new properties from being
-//  added to it and marking all existing properties as non-configurable. Values of present 
+//  added to it and marking all existing properties as non-configurable. Values of present
 // properties can still be changed as long as they are writable.`)
 // );
 
