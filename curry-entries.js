@@ -18,12 +18,12 @@ const mapCurry = (func) => {
 };
 
 const reduceCurry = (func) => {
-  return (e) => {
+  return (e, i=0) => {
     let arr = [];
     for (const [key, value] of Object.entries(e)) {
       arr.push([key, value]);
     }
-    return arr.reduce(func, (i = 0));
+    return arr.reduce(func, i);
   };
 };
 // console.log(reduceCurry((acc, [k, v]) => (acc += v))({ a: 1, b: 2, c: 3 }, 0));
@@ -74,38 +74,38 @@ const mapAverage = (obj) => {
 //Object.keys(obj);
 //Object.values(obj);
 
-// const personnel = {
-//   lukeSkywalker: {
-//     id: 5,
-//     pilotingScore: 98,
-//     shootingScore: 56,
-//     isForceUser: true,
-//   },
-//   sabineWren: {
-//     id: 82,
-//     pilotingScore: 73,
-//     shootingScore: 99,
-//     isForceUser: false,
-//   },
-//   zebOrellios: {
-//     id: 22,
-//     pilotingScore: 20,
-//     shootingScore: 59,
-//     isForceUser: false,
-//   },
-//   ezraBridger: {
-//     id: 15,
-//     pilotingScore: 43,
-//     shootingScore: 67,
-//     isForceUser: true,
-//   },
-//   calebDume: {
-//     id: 11,
-//     pilotingScore: 71,
-//     shootingScore: 85,
-//     isForceUser: true,
-//   },
-// };
+const personnel = {
+  lukeSkywalker: {
+    id: 5,
+    pilotingScore: 98,
+    shootingScore: 56,
+    isForceUser: true,
+  },
+  sabineWren: {
+    id: 82,
+    pilotingScore: 73,
+    shootingScore: 99,
+    isForceUser: false,
+  },
+  zebOrellios: {
+    id: 22,
+    pilotingScore: 20,
+    shootingScore: 59,
+    isForceUser: false,
+  },
+  ezraBridger: {
+    id: 15,
+    pilotingScore: 43,
+    shootingScore: 67,
+    isForceUser: true,
+  },
+  calebDume: {
+    id: 11,
+    pilotingScore: 71,
+    shootingScore: 85,
+    isForceUser: true,
+  },
+};
 
 // let first = {
 //   http: 403,
@@ -121,6 +121,14 @@ const mapAverage = (obj) => {
 
 // console.log(mapCurry(funcer)(personnel));
 // console.log(reduceCurry((acc, [k, v]) => (acc += v))({ a: 1, b: 2, c: 3 }, 0));
+
+console.log(
+  reduceCurry((acc, [k, v]) => acc.concat(' ', `${k}:${v.id}`))(
+    personnel,
+    'personnel:'
+  )
+);
+
 // console.log(
 //   filterCurry(([k, v]) => typeof v === 'string' || k === 'arr')({
 //     str: 'string',
