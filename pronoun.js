@@ -22,13 +22,19 @@ const pronoun = (str) => {
 
     if (arr[x] === 'you') {
       if (!megaObject.hasOwnProperty('you')) {
-        let words = pronounArr.includes(arr[x + 1]) ? [] : [arr[x + 1]];
+        let words = pronounArr.includes(arr[x + 1])
+          ? []
+          : arr[x + 1] === undefined
+          ? []
+          : [arr[x + 1]];
         megaObject['you'] = { word: words, count: 1 };
       } else {
         let words = megaObject.you.word;
         let counter = megaObject.you.count;
         if (!pronounArr.includes(arr[x + 1])) {
-          words.push(arr[x + 1]);
+          if (arr[x + 1] !== undefined) {
+            words.push(arr[x + 1]);
+          }
         }
         counter++;
         megaObject['you'] = { word: words, count: counter };
@@ -149,3 +155,10 @@ const pronoun = (str) => {
 // //  i: { word: ['buy', 'to'], count: 2 },
 // //you: { word: ['buy', 'go'], count: 2 },
 // // it: { word: ['have', 'buys', 'is'], count: 3 }//
+
+// console.log(pronoun('we will rock you'));
+
+// {
+//     we: { word: ['will'], count: 1 },
+//     you: { word: [], count: 1 },
+//   }
