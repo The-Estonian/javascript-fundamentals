@@ -3,9 +3,10 @@ const deepCopy = (obj) => {
     let newArray = [];
     for (let i = 0; i < obj.length; i++) {
       if (Array.isArray(obj[i])) {
-        deepCopy(deepCopy);
+        newArray.push(deepCopy(obj[i]));
+      } else {
+        newArray.push(obj[i]);
       }
-      newArray.push(obj[i]);
     }
     return newArray;
   }
@@ -33,4 +34,4 @@ const deepCopy = (obj) => {
 // const r = Math.random();
 // const obj = [r, Object.freeze([r, Object.freeze([r])])];
 // const copy = deepCopy(obj);
-// console.log(obj[1][1],copy[1][1]);
+// console.log(obj[1][1] !== copy[1][1]);
