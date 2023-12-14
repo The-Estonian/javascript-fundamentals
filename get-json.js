@@ -9,7 +9,7 @@ const getJSON = async (path, params) => {
       .replace(/,/g, '&');
   //   console.log(url);
 
-  returner = await fetch(url).then((res) => {
+  const returner = await fetch(url).then((res) => {
     // console.log(res.ok);
     // console.log(res.status);
     // console.log(await res.json());
