@@ -1,11 +1,12 @@
 const all = async (obj) => {
+  let returnObj = {};
   for (const [key, value] of Object.entries(obj)) {
     if (typeof value === 'object') {
-      obj[key] = await value;
+      returnObj[key] = await value;
     }
   }
   console.log(obj);
-  return await obj;
+  return returnObj;
 };
 
 // console.log(all({})); //{}
