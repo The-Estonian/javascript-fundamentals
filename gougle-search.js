@@ -21,10 +21,12 @@ const queryServers = async (serverName, q) => {
 
   let getFirst = await getJSON(url1);
   let getSecond = await getJSON(url2);
-  let winner = await Promise.race([getFirst, getSecond]).then((resp) => {
-    return resp;
-  });
-  return winner;
+  try {
+    const result = await Promise.race([getFirst, getSecond]);
+    return result;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const gougleSearch = (q) => {
