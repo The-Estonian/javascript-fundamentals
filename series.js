@@ -7,7 +7,7 @@ const series = async (arr) => {
   return returnArr;
 };
 
-let ctx = Math.random;
+// let ctx = Math.random;
 
 // console.log(series([])); //[]
 // console.log(series([() => 1, () => true])); //[1, true]
