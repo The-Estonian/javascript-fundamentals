@@ -22,6 +22,7 @@ const queryServers = async (serverName, q) => {
   let getFirst = getJSON(url1);
   let getSecond = getJSON(url2);
   const result = await Promise.race([getFirst, getSecond]);
+  console.log(result);
   return result;
 };
 
@@ -33,13 +34,20 @@ const gougleSearch = (q) => {
     setTimeout(() => reject(new Error('timeout')), 80)
   );
 
-  Promise.all([getWeb, getImage, , getVideo, timeoutPromise]).then((data) => {
-    return {
-      web: getWeb,
-      image: getImage,
-      video: getVideo,
-    };
-  });
+  Promise.all([getWeb, getImage, , getVideo, timeoutPromise])
+    .then((data) => {
+      console.log({
+        web: data[0],
+        image: data[1],
+        video: data[2],
+      });
+      return {
+        web: data[0],
+        image: data[1],
+        video: data[2],
+      };
+    })
+    .catch((err) => new Error('timeout'));
 };
 
 // let getJSON = async (url) => url;
@@ -48,8 +56,11 @@ const gougleSearch = (q) => {
 //     new Promise((s) =>
 //       setTimeout(s, timings[url.split(/\/([^?]+)?/)[1]] || 0, url)
 //     ));
-// setTimings({ pouet: 2 });
-// queryServers('pouet', 'asd');
+// setTimings({ web_backup: 3, image: 2, video_backup: 4 });
+// queryServers('web', 'asd');
+// queryServers('image', 'asd');
+// queryServers('video', 'asd');
+// gougleSearch('asd');
 
 // return the fastest of those 2 calls:
 // -> getJSON('/pouet?q=hello+world')
