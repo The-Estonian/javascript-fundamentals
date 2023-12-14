@@ -26,20 +26,19 @@ const queryServers = async (serverName, q) => {
 };
 
 const gougleSearch = async (q) => {
-  const getWeb = queryServers('web', q);
-  const getImage = queryServers('image', q);
-  const getVideo = queryServers('video', q);
-  const timeoutPromise = new Promise((_, reject) =>
-    setTimeout(() => reject(new Error('timeout')), 80)
-  );
+  const getWeb = await queryServers('web', q);
+  const getImage = await queryServers('image', q);
+  const getVideo = await queryServers('video', q);
+  //   const timeoutPromise = new Promise((_, reject) =>
+  //     setTimeout(() => reject(new Error('timeout')), 80)
+  //   );
 
   const waitingAllPromises = await Promise.all([
     getWeb,
     getImage,
-    ,
     getVideo,
-    timeoutPromise,
   ]).catch((err) => new Error('timeout'));
+  console.log(waitingAllPromises);
   return {
     web: waitingAllPromises[0],
     image: waitingAllPromises[1],
