@@ -65,6 +65,15 @@ const isWinner = async (country) => {
       return `${country} never was a winner`;
     }
   }
+  let getContinent;
+  try {
+    getContinent = (await db.getWinner(country)).then((data) => {
+      return data.continent;
+    });
+  } catch (err) {}
+  if (getContinent != 'Europe') {
+    return `${country} Country is not what we are looking for because of the continent`;
+  }
   let getResults;
   try {
     getResults = await db.getResults(getId).then((data) => {
@@ -76,15 +85,6 @@ const isWinner = async (country) => {
   }
   if (getResults <= 2) {
     return `${country} is not what we are looking for because of the number of times it was champion`;
-  }
-  let getContinent;
-  try {
-    getContinent = (await db.getWinner(country)).then((data) => {
-      return data.continent;
-    });
-  } catch (err) {}
-  if (getContinent != 'Europe') {
-    return `${country} Country is not what we are looking for because of the continent`;
   }
   return `${country} won the FIFA World Cup in ${getResults.year} winning by ${getResults.score}`;
 };
