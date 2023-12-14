@@ -67,7 +67,7 @@ const isWinner = async (country) => {
   }
   let getContinent;
   try {
-    getContinent = (await db.getWinner(country)).then((data) => {
+    getContinent = await db.getWinner(country).then((data) => {
       return data.continent;
     });
   } catch (err) {}
@@ -95,5 +95,5 @@ const isWinner = async (country) => {
 // 'Country won the FIFA World Cup in <years> winning by <results>';
 // won the FIFA World Cup in 2022, 2026, 2030 winning by 1-0, 3-1, 2-1
 
-console.log(isWinner('England'));
+// console.log(isWinner('England'));
 // console.log(isWinner('Colombia'));
