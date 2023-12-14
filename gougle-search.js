@@ -19,14 +19,11 @@ const queryServers = async (serverName, q) => {
       .replace(/ /g, '+')
       .replace(/,/g, '&');
 
-  let getFirst = await getJSON(url1);
-  let getSecond = await getJSON(url2);
-  try {
-    const result = await Promise.race([getFirst, getSecond]);
-    return result;
-  } catch (error) {
-    throw error;
-  }
+  let getFirst = getJSON(url1);
+  let getSecond = getJSON(url2);
+  const result = await Promise.race([getFirst, getSecond]);
+  console.log(result);
+  return result;
 };
 
 const gougleSearch = (q) => {
