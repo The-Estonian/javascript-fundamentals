@@ -75,10 +75,7 @@ const isWinner = async (country) => {
     console.log(message);
   }
   if (getResults <= 2) {
-    return (
-      country,
-      'is not what we are looking for because of the number of times it was champion'
-    );
+    return `${country} is not what we are looking for because of the number of times it was champion`;
   }
   let getContinent;
   try {
@@ -87,17 +84,9 @@ const isWinner = async (country) => {
     });
   } catch (err) {}
   if (getContinent != 'Europe') {
-    return (
-      country, 'Country is not what we are looking for because of the continent'
-    );
+    return `${country} Country is not what we are looking for because of the continent`;
   }
-  return (
-    country,
-    'won the FIFA World Cup in',
-    getResults.year,
-    'winning by',
-    getResults.score
-  );
+  return `${country} won the FIFA World Cup in ${getResults.year} winning by ${getResults.score}`;
 };
 
 // 'Country never was a winner';
