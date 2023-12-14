@@ -22,11 +22,10 @@ const queryServers = async (serverName, q) => {
   let getFirst = getJSON(url1);
   let getSecond = getJSON(url2);
   const result = await Promise.race([getFirst, getSecond]);
-  console.log(result);
   return result;
 };
 
-const gougleSearch = (q) => {
+const gougleSearch = async (q) => {
   const getWeb = queryServers('web', q);
   const getImage = queryServers('image', q);
   const getVideo = queryServers('video', q);
@@ -34,20 +33,18 @@ const gougleSearch = (q) => {
     setTimeout(() => reject(new Error('timeout')), 80)
   );
 
-  Promise.all([getWeb, getImage, , getVideo, timeoutPromise])
-    .then((data) => {
-      console.log({
-        web: data[0],
-        image: data[1],
-        video: data[2],
-      });
-      return {
-        web: data[0],
-        image: data[1],
-        video: data[2],
-      };
-    })
-    .catch((err) => new Error('timeout'));
+  const waitingAllPromises = await Promise.all([
+    getWeb,
+    getImage,
+    ,
+    getVideo,
+    timeoutPromise,
+  ]).catch((err) => new Error('timeout'));
+  return {
+    web: waitingAllPromises[0],
+    image: waitingAllPromises[1],
+    video: waitingAllPromises[2],
+  };
 };
 
 // let getJSON = async (url) => url;
@@ -57,10 +54,10 @@ const gougleSearch = (q) => {
 //       setTimeout(s, timings[url.split(/\/([^?]+)?/)[1]] || 0, url)
 //     ));
 // setTimings({ web_backup: 3, image: 2, video_backup: 4 });
+// console.log(gougleSearch('kxo3h6iilqj'));
 // queryServers('web', 'asd');
 // queryServers('image', 'asd');
 // queryServers('video', 'asd');
-// gougleSearch('asd');
 
 // return the fastest of those 2 calls:
 // -> getJSON('/pouet?q=hello+world')
