@@ -20,9 +20,9 @@ const getJSON = async (path, params) => {
     return res.json();
   });
 
-  //   if (returner.error) {
-  //     throw new Error(returner.error);
-  //   }
+  if (returner.error) {
+    throw new Error(returner.error);
+  }
 
   return returner.data;
 };
