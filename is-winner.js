@@ -71,8 +71,8 @@ const isWinner = async (country) => {
       return data.continent;
     });
   } catch (err) {}
-  if (getContinent != 'Europe') {
-    return `${country} Country is not what we are looking for because of the continent`;
+  if (getContinent !== 'Europe') {
+    return `${country} is not what we are looking for because of the continent`;
   }
   let getResults;
   try {
@@ -95,5 +95,5 @@ const isWinner = async (country) => {
 // 'Country won the FIFA World Cup in <years> winning by <results>';
 // won the FIFA World Cup in 2022, 2026, 2030 winning by 1-0, 3-1, 2-1
 
-// console.log(isWinner('England'));
+console.log(isWinner('England'));
 // console.log(isWinner('Colombia'));
