@@ -36,23 +36,23 @@
 //     { id: 21, countryId: 5, year: 2018, score: '4-2' },
 //   ];
 
-  return {
-    //returns the information of the country
-    getWinner: async (countryName) => {
-      const match = countries.find((country) => country.name === countryName);
-      if (!match) throw Error('Country Not Found');
-      return match;
-    },
-    //returns the information of the wins of that country
-    getResults: async (countryId) => {
-      const match = results.filter((result) => result.countryId === countryId);
-      if (!match.length) throw Error('Results Not Found');
-      return match;
-    },
-    addCountry: (country) => countries.push(country),
-    addResults: (result) => results.push(result),
-  };
-})();
+//   return {
+//     //returns the information of the country
+//     getWinner: async (countryName) => {
+//       const match = countries.find((country) => country.name === countryName);
+//       if (!match) throw Error('Country Not Found');
+//       return match;
+//     },
+//     //returns the information of the wins of that country
+//     getResults: async (countryId) => {
+//       const match = results.filter((result) => result.countryId === countryId);
+//       if (!match.length) throw Error('Results Not Found');
+//       return match;
+//     },
+//     addCountry: (country) => countries.push(country),
+//     addResults: (result) => results.push(result),
+//   };
+// })();
 
 const isWinner = async (country) => {
   let getId;
