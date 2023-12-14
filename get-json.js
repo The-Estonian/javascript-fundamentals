@@ -48,27 +48,27 @@ const getJSON = async (path, params) => {
 // fetch = (url) => fakeFetch({ url, data });
 // console.log(getJSON('/', { q: 1 }));
 
-const getJSON = async (path, params) => {
-  let url =
-    path +
-    '?' +
-    JSON.stringify(params)
-      .replace(/[{"}]/g, '')
-      .replace(/:/g, '=')
-      .replace(/ /g, '+')
-      .replace(/,/g, '&');
+// const getJSON = async (path, params) => {
+//   let url =
+//     path +
+//     '?' +
+//     JSON.stringify(params)
+//       .replace(/[{"}]/g, '')
+//       .replace(/:/g, '=')
+//       .replace(/ /g, '+')
+//       .replace(/,/g, '&');
 
-  const result = await fetch(url).then((res) => {
-    // console.log(res.ok)
-    if (!res.ok) {
-      throw new Error(res.statusText);
-    }
-    // console.log(res.json())
-    return res.json();
-  });
-  if (result.error) {
-    throw new Error(result.error);
-  }
-  // console.log(result.data)
-  return result.data;
-};
+//   const result = await fetch(url).then((res) => {
+//     // console.log(res.ok)
+//     if (!res.ok) {
+//       throw new Error(res.statusText);
+//     }
+//     // console.log(res.json())
+//     return res.json();
+//   });
+//   if (result.error) {
+//     throw new Error(result.error);
+//   }
+//   // console.log(result.data)
+//   return result.data;
+// };
