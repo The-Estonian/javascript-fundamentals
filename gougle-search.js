@@ -21,7 +21,9 @@ const queryServers = async (serverName, q) => {
 
   let getFirst = await getJSON(url1);
   let getSecond = await getJSON(url2);
-  return await Promise.race([getFirst, getSecond]);
+  let winner = await Promise.race([getFirst, getSecond]);
+  console.log(winner);
+  return winner;
 };
 
 const gougleSearch = (q) => {
@@ -41,7 +43,14 @@ const gougleSearch = (q) => {
   });
 };
 
-// queryServers('pouet', 'hello+world');
+// let getJSON = async (url) => url;
+// setTimings = (timings) =>
+//   (getJSON = (url) =>
+//     new Promise((s) =>
+//       setTimeout(s, timings[url.split(/\/([^?]+)?/)[1]] || 0, url)
+//     ));
+// setTimings({ pouet_backup: 2 });
+// queryServers('pouet', 'asd');
 
 // return the fastest of those 2 calls:
 // -> getJSON('/pouet?q=hello+world')
