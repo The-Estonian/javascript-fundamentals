@@ -62,7 +62,7 @@ const isWinner = async (country) => {
     });
   } catch ({ name, message }) {
     if (message == 'Country Not Found') {
-      return country, 'never was a winner';
+      return `${country} never was a winner`;
     }
   }
   let getResults;
