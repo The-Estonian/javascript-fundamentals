@@ -22,14 +22,13 @@ const queryServers = async (serverName, q) => {
   let getFirst = getJSON(url1);
   let getSecond = getJSON(url2);
   const result = await Promise.race([getFirst, getSecond]);
-  console.log(result);
   return result;
 };
 
 const gougleSearch = (q) => {
-  const getWeb = queryServers(web, q);
-  const getImage = queryServers(image, q);
-  const getVideo = queryServers(video, q);
+  const getWeb = queryServers('web', q);
+  const getImage = queryServers('image', q);
+  const getVideo = queryServers('video', q);
   const timeoutPromise = new Promise((_, reject) =>
     setTimeout(() => reject(new Error('timeout')), 80)
   );
