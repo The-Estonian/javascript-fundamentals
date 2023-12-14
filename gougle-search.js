@@ -1,4 +1,4 @@
-const queryServers = (serverName, q) => {
+const queryServers = async (serverName, q) => {
   let url1 =
     '/' +
     serverName +
@@ -18,8 +18,10 @@ const queryServers = (serverName, q) => {
       .replace(/:/g, '=')
       .replace(/ /g, '+')
       .replace(/,/g, '&');
-  console.log(url1);
-  console.log(url2);
+
+  let getFirst = await getJSON(url1);
+  let getSecond = await getJSON(url2);
+  return await Promise.race([getFirst, getSecond]);
 };
 
 const gougleSearch = (q) => {
@@ -30,7 +32,7 @@ const gougleSearch = (q) => {
     setTimeout(() => reject(new Error('timeout')), 80)
   );
 
-  Promise.race([getWeb, getImage, , getVideo, timeoutPromise]).then((data) => {
+  Promise.all([getWeb, getImage, , getVideo, timeoutPromise]).then((data) => {
     return {
       web: getWeb,
       image: getImage,
