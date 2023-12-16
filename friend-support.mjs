@@ -12,7 +12,7 @@ let server = http.createServer(function (req, res) {
           .readFileSync('./guests/' + allFileNames[i])
           .toString('utf8');
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.write(JSON.stringify(dataJSON) + '\n');
+        res.write(JSON.stringify(dataJSON));
         res.end();
         trigger = false;
         break;
