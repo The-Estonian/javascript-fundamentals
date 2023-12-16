@@ -18,7 +18,7 @@ let server = http.createServer(function (req, res) {
     }
   } catch (err) {
     console.log(err);
-    if (err == 'ENOENT') {
+    if (err.code == 'ENOENT') {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(Buffer.from(JSON.stringify({ error: 'guest not found' })));
     } else {
