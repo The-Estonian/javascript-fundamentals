@@ -20,13 +20,15 @@ let server = http.createServer(function (req, res) {
     }
     // error defined as guest not found
     if (trigger) {
+      res.statusCode = 404;
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.write({ error: 'guest not found' } + '\n');
+      res.write({ error: 'guest not found' });
       res.end();
     }
   } catch (err) {
+    res.statusCode = 500;
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.write({ error: 'server failed' } + '\n');
+    res.write({ error: 'server failed' });
     res.end();
   }
 });
