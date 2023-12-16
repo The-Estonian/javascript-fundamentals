@@ -10,6 +10,7 @@ let server = http.createServer((request, response) => {
       let fileData = fs.readFileSync('./guests' + request.url + '.json');
       statusC = 200;
       data = fileData.toString('utf8');
+      console.log(data);
     } catch (err) {
       // console.log(err);
       if (err.code == 'ENOENT') {
