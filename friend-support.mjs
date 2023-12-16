@@ -7,7 +7,7 @@ let server = http.createServer((request, response) => {
   let statusC;
   if (method === 'GET' && request.url !== '/favicon.ico') {
     try {
-      let fileData = fs.readFileSync('./guestss' + request.url + '.json');
+      let fileData = fs.readFileSync('./guests' + request.url + '.json');
       statusC = 200;
       data = fileData.toString('utf8');
     } catch (err) {
