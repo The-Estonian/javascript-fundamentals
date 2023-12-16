@@ -56,3 +56,4 @@ fs.writeFile('./vip.txt', nameArray.join('\n'), { flag: 'w+' }, (err) => {
 // w+	reading and writing pointer at the beginning of the file
 // a	writing and writing pointer at the end of the file
 // a+	reading and writing pointer at the end of the file
+// testing
