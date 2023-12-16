@@ -21,7 +21,7 @@ for (let i = 0; i < files.length; i++) {
   // console.log(`${i + 1}. ${lastname} ${firstname}`)
   let formattedName = lastname + ' ' + firstname;
 
-  const dataJSON = fs.readFileSync('./guests/' + files[i]);
+  const dataJSON = fs.readFileSync(enteredDir + '/' + files[i]);
   let vipStatus = JSON.parse(dataJSON);
   if (vipStatus.answer === 'yes') {
     nameArray.push(formattedName);
