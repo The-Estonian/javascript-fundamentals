@@ -1,5 +1,4 @@
 import * as http from 'node:http';
-
 import * as fs from 'fs';
 
 let server = http.createServer(function (req, res) {
@@ -18,25 +17,15 @@ let server = http.createServer(function (req, res) {
         break;
       }
     }
-    // error defined as guest not found
     if (trigger) {
-      res.statusCode = 404;
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.write(Buffer.from(JSON.stringify({ error: 'guest not found' })));
-      res.end();
+      res.end(Buffer.from(JSON.stringify({ error: 'guest not found' })));
     }
   } catch (err) {
-    // console.log(err);
-    res.statusCode = 500;
+    console.log(err);
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.write(Buffer.from(JSON.stringify({ error: 'server failed' })));
-    res.end();
+    res.end(Buffer.from(JSON.stringify({ error: 'server failed' })));
   }
 });
 console.log('Server on http://localhost:5000');
 server.listen(5000);
-
-// +   body: '{"message":"kps8i"}',
-// -   body: {
-// -     message: 'kps8i'
-// -   }
