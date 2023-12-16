@@ -20,10 +20,10 @@ let server = http.createServer(function (req, res) {
     console.log(err);
     if (err.code == 'ENOENT') {
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(Buffer.from(JSON.stringify({ error: 'guest not found' })));
+      res.end(Buffer.byteLength(JSON.stringify({ error: 'guest not found' })));
     } else {
       res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(Buffer.from(JSON.stringify({ error: 'server failed' })));
+      res.end(Buffer.byteLength(JSON.stringify({ error: 'server failed' })));
     }
   }
 });
