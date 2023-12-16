@@ -25,14 +25,12 @@ try {
     //   console.log(vipStatus.answer);
   }
   nameArray.sort();
+  for (let i = 0; i < nameArray.length; i++) {
+    nameArray[i] = i + 1 + '. ' + nameArray[i];
+  }
 } catch (err) {
   nameArray = [''];
 }
-console.log(nameArray);
-for (let i = 0; i < nameArray.length; i++) {
-  nameArray[i] = i + 1 + '. ' + nameArray[i];
-}
-console.log(nameArray);
 
 fs.writeFile('./vip.txt', nameArray.join('\n'), { flag: 'w+' }, (err) => {
   if (err) {
