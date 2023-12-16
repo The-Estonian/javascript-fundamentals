@@ -9,7 +9,7 @@ let enteredDir = process.argv[2];
 try {
   const files = await readdir(enteredDir, (err, files) => {
     if (err) {
-      return [''];
+      files = [];
     }
   });
   for (let i = 0; i < files.length; i++) {
