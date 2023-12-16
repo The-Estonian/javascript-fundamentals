@@ -23,8 +23,8 @@ let server = http.createServer((request, response) => {
   }
   // response.statusCode = statusC;
   response.writeHead(statusC, {
-    'Content-Length': Buffer.byteLength(data),
     'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(data),
   });
   response.end();
 
@@ -51,5 +51,5 @@ let server = http.createServer((request, response) => {
   //   }
   // }
 });
-console.log('Server on http://localhost:5000');
+// console.log('Server on http://localhost:5000');
 server.listen(5000);
