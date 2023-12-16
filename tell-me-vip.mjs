@@ -26,7 +26,7 @@ try {
   }
   nameArray.sort();
 } catch (err) {
-  return [''];
+  nameArray = [''];
 }
 console.log(nameArray);
 for (let i = 0; i < nameArray.length; i++) {
