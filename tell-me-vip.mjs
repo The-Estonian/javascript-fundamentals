@@ -6,24 +6,28 @@ import * as fs from 'fs';
 let nameArray = [];
 let enteredDir = process.argv[2];
 
-const files = await readdir(enteredDir, (err, files) => {
-  if (err) {
-    return [''];
-  }
-});
-for (let i = 0; i < files.length; i++) {
-  let [firstname, lastname] = files[i].replace('.json', '').split('_');
-  // console.log(`${i + 1}. ${lastname} ${firstname}`)
-  let formattedName = lastname + ' ' + firstname;
+try {
+  const files = await readdir(enteredDir, (err, files) => {
+    if (err) {
+      return [''];
+    }
+  });
+  for (let i = 0; i < files.length; i++) {
+    let [firstname, lastname] = files[i].replace('.json', '').split('_');
+    // console.log(`${i + 1}. ${lastname} ${firstname}`)
+    let formattedName = lastname + ' ' + firstname;
 
-  const dataJSON = fs.readFileSync('./guests/' + files[i]);
-  let vipStatus = JSON.parse(dataJSON);
-  if (vipStatus.answer === 'yes') {
-    nameArray.push(formattedName);
+    const dataJSON = fs.readFileSync('./guests/' + files[i]);
+    let vipStatus = JSON.parse(dataJSON);
+    if (vipStatus.answer === 'yes') {
+      nameArray.push(formattedName);
+    }
+    //   console.log(vipStatus.answer);
   }
-  //   console.log(vipStatus.answer);
+  nameArray.sort();
+} catch (err) {
+  return [''];
 }
-nameArray.sort();
 console.log(nameArray);
 for (let i = 0; i < nameArray.length; i++) {
   nameArray[i] = i + 1 + '. ' + nameArray[i];
