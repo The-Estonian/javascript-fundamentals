@@ -3,27 +3,28 @@ import * as fs from 'fs';
 
 let server = http.createServer(function (req, res) {
   try {
-    const allFileNames = fs.readdirSync('./guests');
-    for (let i = 0; i < allFileNames.length; i++) {
-      if (req.url == '/' + allFileNames[i].replace('.json', '')) {
-        const dataJSON = fs
-          .readFileSync('./guests/' + allFileNames[i])
-          .toString('utf8');
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.write(dataJSON);
-        res.end();
-        trigger = false;
-        break;
-      }
-    }
+    // const allFileNames = fs.readdirSync('./guests');
+    // for (let i = 0; i < allFileNames.length; i++) {
+    //   if (req.url == '/' + allFileNames[i].replace('.json', '')) {
+    const dataJSON = fs
+      .readFileSync('./guests' + req.url + '.json')
+      .toString('utf8');
+    res.setHeader('Content-Type', 'application/json');
+    res.statusCode = 200;
+    res.write(dataJSON);
+    res.end();
+    //   }
+    // }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     if (err.code == 'ENOENT') {
-      res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(Buffer.byteLength(JSON.stringify({ error: 'guest not found' })));
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 404;
+      res.end(Buffer.from(JSON.stringify({ error: 'guest not found' })));
     } else {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(Buffer.byteLength(JSON.stringify({ error: 'server failed' })));
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 500;
+      res.end(Buffer.from(JSON.stringify({ error: 'server failed' })));
     }
   }
 });
