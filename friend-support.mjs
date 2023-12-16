@@ -4,7 +4,6 @@ import * as fs from 'fs';
 let server = http.createServer(function (req, res) {
   try {
     const allFileNames = fs.readdirSync('./guests');
-    let trigger = true;
     for (let i = 0; i < allFileNames.length; i++) {
       if (req.url == '/' + allFileNames[i].replace('.json', '')) {
         const dataJSON = fs
@@ -17,14 +16,15 @@ let server = http.createServer(function (req, res) {
         break;
       }
     }
-    if (trigger) {
-      res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(Buffer.from(JSON.stringify({ error: 'guest not found' })));
-    }
   } catch (err) {
     console.log(err);
-    res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(Buffer.from(JSON.stringify({ error: 'server failed' })));
+    if (err == 'ENOENT') {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(Buffer.from(JSON.stringify({ error: 'guest not found' })));
+    } else {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(Buffer.from(JSON.stringify({ error: 'server failed' })));
+    }
   }
 });
 console.log('Server on http://localhost:5000');
