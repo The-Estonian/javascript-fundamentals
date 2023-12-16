@@ -4,7 +4,12 @@ import * as fs from 'fs';
 // const { readFileSync } = require('fs');
 
 let nameArray = [];
-let enteredDir = process.argv[2];
+let enteredDir;
+if (process.argv.length < 3) {
+  enteredDir = 'guests';
+} else {
+  enteredDir = process.argv[2];
+}
 
 const files = await readdir(enteredDir, (err, files) => {
   if (err) {
