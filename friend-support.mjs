@@ -22,13 +22,14 @@ let server = http.createServer(function (req, res) {
     if (trigger) {
       res.statusCode = 404;
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.write({ error: 'guest not found' });
+      res.write(Buffer.from(JSON.stringify({ error: 'guest not found' })));
       res.end();
     }
   } catch (err) {
+    // console.log(err);
     res.statusCode = 500;
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.write({ error: 'server failed' });
+    res.write(Buffer.from(JSON.stringify({ error: 'server failed' })));
     res.end();
   }
 });
