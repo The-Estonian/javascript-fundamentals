@@ -12,7 +12,7 @@ let server = http.createServer(function (req, res) {
           .readFileSync('./guests/' + allFileNames[i])
           .toString('utf8');
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.write(JSON.stringify(dataJSON));
+        res.write(dataJSON);
         res.end();
         trigger = false;
         break;
@@ -21,14 +21,19 @@ let server = http.createServer(function (req, res) {
     // error defined as guest not found
     if (trigger) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.write(JSON.stringify({ error: 'guest not found' }) + '\n');
+      res.write({ error: 'guest not found' } + '\n');
       res.end();
     }
   } catch (err) {
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify({ error: 'server failed' }) + '\n');
+    res.write({ error: 'server failed' } + '\n');
     res.end();
   }
 });
 console.log('Server on http://localhost:5000');
 server.listen(5000);
+
+// +   body: '{"message":"kps8i"}',
+// -   body: {
+// -     message: 'kps8i'
+// -   }
