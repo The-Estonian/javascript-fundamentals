@@ -17,7 +17,7 @@ let server = http.createServer((request, response) => {
             })
             .end(data);
         } catch (err) {
-          data = Buffer.from(JSON.stringify({ error: 'guest not found' }));
+          data = JSON.stringify({ error: 'guest not found' });
           response
             .writeHead(404, {
               'Content-Length': Buffer.byteLength(data),
@@ -26,7 +26,7 @@ let server = http.createServer((request, response) => {
         }
       });
     } catch (err) {
-      data = Buffer.from(JSON.stringify({ error: 'server failed' }));
+      data = JSON.stringify({ error: 'server failed' });
       response
         .writeHead(404, {
           'Content-Length': Buffer.byteLength(data),
