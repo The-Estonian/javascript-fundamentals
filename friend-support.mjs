@@ -4,6 +4,7 @@ import { Buffer } from 'node:buffer';
 
 let server = http.createServer((request, response) => {
   const { method, url, headers } = request;
+  response.setHeader('Content-Type', 'application/json');
   if (method === 'GET' && request.url !== '/favicon.ico') {
     try {
       // server.kill();
@@ -15,7 +16,6 @@ let server = http.createServer((request, response) => {
           response
             .writeHead(200, {
               'Content-Length': Buffer.byteLength(data),
-              'Content-Type': 'application/json',
             })
             .end(data);
         } catch (err) {
@@ -23,7 +23,6 @@ let server = http.createServer((request, response) => {
           response
             .writeHead(404, {
               'Content-Length': Buffer.byteLength(data),
-              'Content-Type': 'application/json',
             })
             .end(data);
         }
@@ -33,12 +32,14 @@ let server = http.createServer((request, response) => {
       response
         .writeHead(500, {
           'Content-Length': Buffer.byteLength(data),
-          'Content-Type': 'application/json',
         })
         .end(data);
     }
   }
+  const asd = response.getHeaders();
+  console.log(asd);
 });
+
 server.listen(5000, () => {
   console.log('Server on http://localhost:5000');
 });
