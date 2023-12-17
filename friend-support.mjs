@@ -5,7 +5,6 @@ import { Buffer } from 'node:buffer';
 let server = http.createServer((request, response) => {
   const { method, url, headers } = request;
   if (method === 'GET' && request.url !== '/favicon.ico') {
-    response.setHeader('Content-Type', 'application/json');
     try {
       // server.kill();
       fs.readFile('./guests' + request.url + '.json', 'utf8', (err, data) => {
@@ -16,6 +15,7 @@ let server = http.createServer((request, response) => {
           response
             .writeHead(200, {
               'Content-Length': Buffer.byteLength(data),
+              'Content-Type': 'application/json',
             })
             .end(data);
         } catch (err) {
@@ -23,6 +23,7 @@ let server = http.createServer((request, response) => {
           response
             .writeHead(404, {
               'Content-Length': Buffer.byteLength(data),
+              'Content-Type': 'application/json',
             })
             .end(data);
         }
@@ -32,12 +33,14 @@ let server = http.createServer((request, response) => {
       response
         .writeHead(500, {
           'Content-Length': Buffer.byteLength(data),
+          'Content-Type': 'application/json',
         })
         .end(data);
     }
   }
 });
-console.log('Server on http://localhost:5000');
-server.listen(5000);
+server.listen(5000, () => {
+  console.log('Server on http://localhost:5000');
+});
 
 // https://www.geeksforgeeks.org/node-js-response-writehead-method/
