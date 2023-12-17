@@ -17,7 +17,7 @@ let server = http.createServer((request, response) => {
             .end(data);
         } catch (err) {
           console.log(err.code);
-          if (err.code === 'ERR_INVALID_ARG_TYPE') {
+          if (err.code !== 'ERR_INVALID_ARG_TYPE') {
             let data = JSON.stringify({ error: 'guest not found' });
             response
               .writeHead(404, {
