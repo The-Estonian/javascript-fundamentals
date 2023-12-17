@@ -10,24 +10,32 @@ let server = http.createServer((request, response) => {
         if (err) {
           console.log(err);
         }
-        response.statusCode = 200;
         try {
-          response.write(data);
+          response
+            .writeHead(200, {
+              'Content-Length': Buffer.byteLength(data),
+            })
+            .end(data);
         } catch (err) {
-          response.statusCode = 404;
-          response.write(
-            Buffer.from(JSON.stringify({ error: 'guest not found' }))
-          );
-          response.end();
+          data = Buffer.from(JSON.stringify({ error: 'guest not found' }));
+          response
+            .writeHead(404, {
+              'Content-Length': Buffer.byteLength(data),
+            })
+            .end(data);
         }
-        response.end();
       });
     } catch (err) {
-      response.statusCode = 500;
-      response.write(JSON.stringify({ error: 'server failed' }), 'utf8');
-      response.end();
+      data = Buffer.from(JSON.stringify({ error: 'server failed' }));
+      response
+        .writeHead(404, {
+          'Content-Length': Buffer.byteLength(data),
+        })
+        .end(data);
     }
   }
 });
 console.log('Server on http://localhost:5000');
 server.listen(5000);
+
+// https://www.geeksforgeeks.org/node-js-response-writehead-method/
