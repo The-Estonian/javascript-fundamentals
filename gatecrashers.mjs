@@ -1,5 +1,5 @@
 import * as http from 'node:http';
-import * as fs from 'fs';
+import { writeFile } from 'fs/promises';
 import { Buffer } from 'node:buffer';
 
 const AUTHORIZED_USERS = {
@@ -9,13 +9,20 @@ const AUTHORIZED_USERS = {
 };
 
 const server = http.createServer((request, response) => {
-  const { method, url, headers } = request;
+  const { method, url } = request;
   response.setHeader('Content-Type', 'application/json');
+
   if (method === 'POST' && url !== '/favicon.ico') {
     // Security part starts here
-    console.log(request.headers);
     const authheader = request.headers.authorization;
-    if (authheader) {
+    if (!authheader) {
+      let bodyRes = 'Authorization Required%';
+      response.writeHead(401, {
+        'Content-Length': Buffer.byteLength(bodyRes),
+        'Content-Type': 'text/plain',
+      });
+      response.end(bodyRes);
+    } else {
       const auth = Buffer.from(authheader.split(' ')[1], 'base64')
         .toString()
         .split(':');
@@ -23,43 +30,35 @@ const server = http.createServer((request, response) => {
       const pass = auth[1];
 
       if (AUTHORIZED_USERS[user] === pass) {
-        // Security part ends here
+        let guest = request.url.slice(1);
+        let fileName = `guests/${guest}.json`;
+        let bodyReq = request.headers['body'];
+        writeFile(fileName, bodyReq)
+          .then(() => {
+            let bodyRes = bodyReq;
+            response.writeHead(200, {
+              'Content-Length': Buffer.byteLength(bodyRes),
+            });
+            response.end(bodyRes);
+          })
+          .catch((err) => {
+            // Handle the error here
+            console.error('Error:', err);
 
-        request.on('data', (data) => {
-          //   const data = Buffer.concat(body).toString();
-          const filePath = `./guests${url}.json`;
-
-          fs.writeFile(
-            filePath,
-            data.toString('utf8'),
-            {
-              encoding: 'utf8',
-              flag: 'w',
-            },
-            (err) => {
-              if (err) {
-                const serverFailedResponse = JSON.stringify({
-                  error: 'server failed in catch',
-                });
-                response.writeHead(500, {
-                  'Content-Length': Buffer.byteLength(serverFailedResponse),
-                });
-                response.end(serverFailedResponse);
-              }
-            }
-          );
-          response.writeHead(200, {
-            // 'Content-Length': Buffer.from(data),
+            let bodyRes = JSON.stringify({ error: 'server failed in catch' });
+            response.writeHead(500, {
+              'Content-Length': Buffer.byteLength(bodyRes),
+            });
+            response.end(bodyRes);
           });
-          response.end();
+      } else {
+        let bodyRes = 'Authorization Required%';
+        response.writeHead(401, {
+          'Content-Length': Buffer.byteLength(bodyRes),
+          'Content-Type': 'text/plain',
         });
+        response.end(bodyRes);
       }
-    } else {
-      let dataStream = JSON.stringify({ error: 'Authorization Required%' });
-      response.writeHead(401, {
-        'Content-Length': Buffer.byteLength(dataStream),
-      });
-      response.end(dataStream);
     }
   }
 });
@@ -67,5 +66,3 @@ const server = http.createServer((request, response) => {
 server.listen(5000, () => {
   console.log('Server on http://localhost:5000');
 });
-
-// https://stackoverflow.com/questions/4295782/how-to-process-post-data-in-node-js
