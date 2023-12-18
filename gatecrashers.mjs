@@ -9,7 +9,7 @@ const server = http.createServer((request, response) => {
   if (method === 'POST' && url !== '/favicon.ico') {
     // Security part starts here
     const authheader = request.headers.authorization;
-    if (authheader || !req.headers.authorization.indexOf('Basic ') === -1) {
+    if (authheader) {
       const auth = Buffer.from(authheader.split(' ')[1], 'base64')
         .toString()
         .split(':');
@@ -42,7 +42,7 @@ const server = http.createServer((request, response) => {
           });
       }
     } else {
-      let bodyRes = { error: 'Authorization Required%' };
+      let bodyRes = JSON.stringify({ error: 'Authorization Required%' });
       response.writeHead(401, {
         'Content-Length': Buffer.byteLength(bodyRes),
       });
