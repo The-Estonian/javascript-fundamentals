@@ -48,6 +48,8 @@ const server = http.createServer((request, response) => {
   }
 });
 // test
-server.listen(5000, 'localhost', () => {
+const port = 5000;
+const host = 'localhost';
+server.listen(port, host, () => {
   console.log('Server on http://localhost:5000');
 });
