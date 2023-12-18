@@ -2,11 +2,7 @@ import * as http from 'node:http';
 import { writeFile } from 'fs/promises';
 import { Buffer } from 'node:buffer';
 
-const AUTHORIZED_USERS = {
-  Caleb_Squires: 'abracadabra',
-  Tyrique_Dalton: 'abracadabra',
-  Rahima_Young: 'abracadabra',
-};
+const users = ['Caleb_Squires', 'Tyrique_Dalton', 'Rahima_Young'];
 
 const server = http.createServer((request, response) => {
   const { method, url } = request;
@@ -22,7 +18,7 @@ const server = http.createServer((request, response) => {
       const user = auth[0];
       const pass = auth[1];
 
-      if (AUTHORIZED_USERS[user] === pass) {
+      if (user.includes(username) && pass === 'abracadabra') {
         let guest = request.url.slice(1);
         let fileName = `guests/${guest}.json`;
         let bodyReq = request.headers['body'];
