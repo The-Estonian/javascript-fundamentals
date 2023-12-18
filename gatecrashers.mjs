@@ -29,7 +29,7 @@ const server = http.createServer((request, response) => {
           //   const data = Buffer.concat(body).toString();
           const filePath = `./guests${url}.json`;
 
-          fs.promises.writeFile(
+          fs.writeFile(
             filePath,
             data.toString('utf8'),
             {
@@ -37,13 +37,15 @@ const server = http.createServer((request, response) => {
               flag: 'w',
             },
             (err) => {
-              const serverFailedResponse = JSON.stringify({
-                error: 'server failed in catch',
-              });
-              response.writeHead(500, {
-                'Content-Length': Buffer.byteLength(serverFailedResponse),
-              });
-              response.end(serverFailedResponse);
+              if (err) {
+                const serverFailedResponse = JSON.stringify({
+                  error: 'server failed in catch',
+                });
+                response.writeHead(500, {
+                  'Content-Length': Buffer.byteLength(serverFailedResponse),
+                });
+                response.end(serverFailedResponse);
+              }
             }
           );
           response.writeHead(200, {
