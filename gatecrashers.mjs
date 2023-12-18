@@ -29,50 +29,36 @@ const server = http.createServer((request, response) => {
         .split(':');
       const user = auth[0];
       const pass = auth[1];
-      // console.log(auth[0])
-      // console.log(AUTHORIZED_USERS[user])
-
-      // console.log(auth[1])
-      // console.log(pass)
 
       if (AUTHORIZED_USERS[user] === pass) {
         // Security part ends here
+
         request.on('data', async (data) => {
           //   const data = Buffer.concat(body).toString();
           const filePath = `./guests${url}.json`;
 
-          try {
-            await fs.promises.writeFile(
-              filePath,
-              data,
-              {
-                encoding: 'utf8',
-                flag: 'w',
-              },
-              (err) => {
-                console.log(err);
-              }
-            );
-            response.writeHead(201, {
-              'Content-Length': Buffer.byteLength(
-                JSON.stringify(JSON.parse(data.toString('utf8')))
-              ),
-            });
-            response.end();
-          } catch (error) {
-            const serverFailedResponse = JSON.stringify({
-              error: 'server failed in catch',
-            });
-            response.writeHead(500, {
-              'Content-Length': Buffer.byteLength(serverFailedResponse),
-            });
-            response.end(serverFailedResponse);
-          }
+          await fs.promises.writeFile(
+            filePath,
+            data.toString('utf8'),
+            {
+              encoding: 'utf8',
+              flag: 'w',
+            },
+            (err) => {
+              const serverFailedResponse = JSON.stringify({
+                error: 'server failed in catch',
+              });
+              response.writeHead(500, {
+                'Content-Length': Buffer.byteLength(serverFailedResponse),
+              });
+              response.end(serverFailedResponse);
+            }
+          );
+          response.writeHead(201, {
+            // 'Content-Length': Buffer.from(data),
+          });
+          response.end();
         });
-
-        // request.on('end', () => {
-
-        // });
       } else {
         // New else security error
         response.writeHead(401, {
@@ -85,11 +71,6 @@ const server = http.createServer((request, response) => {
     }
   } else if (method === 'POST' && url !== '/favicon.ico') {
     try {
-      const body = [];
-      request.on('data', (chunk) => {
-        body.push(chunk);
-      });
-
       request.on('end', async () => {
         // kui viitsimist siis võib proovida ilma asyncita
         const data = Buffer.concat(body).toString();
