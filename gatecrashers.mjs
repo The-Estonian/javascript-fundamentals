@@ -29,15 +29,14 @@ const server = http.createServer((request, response) => {
           response.end(bodyRes);
         })
         .catch((err) => {
-          // Handle the error here
-          console.error('Error:', err);
-
-          let bodyRes = JSON.stringify({ error: 'Server Error' });
-          response.writeHead(500, {
-            'Content-Length': Buffer.byteLength(bodyRes),
-          });
-          response.end(bodyRes);
-          return;
+          if (err) {
+            let bodyRes = JSON.stringify({ error: 'Server Error' });
+            response.writeHead(500, {
+              'Content-Length': Buffer.byteLength(bodyRes),
+            });
+            response.end(bodyRes);
+            return;
+          }
         });
     }
   } else {
