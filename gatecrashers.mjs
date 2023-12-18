@@ -19,7 +19,7 @@ const server = http.createServer((request, response) => {
       if (!authheader) {
         response.writeHead(401, {
           'Content-Length': 0,
-          'WWW-Authenticate': 'Basic realm="Authorization Required"',
+          'WWW-Authenticate': 'Basic realm="Authorization Required%"',
         });
         response.end();
       }
@@ -63,11 +63,18 @@ const server = http.createServer((request, response) => {
         // New else security error
         response.writeHead(401, {
           'Content-Length': 0,
-          'WWW-Authenticate': 'Basic realm="Authorization Required"',
+          'WWW-Authenticate': 'Basic realm="Authorization Required%"',
         });
         response.end();
         // End new else security error
       }
+    } else {
+      // New else security error
+      response.writeHead(401, {
+        'Content-Length': 0,
+        'WWW-Authenticate': 'Basic realm="Authorization Required%"',
+      });
+      response.end();
     }
   } else if (method === 'POST' && url !== '/favicon.ico') {
     try {
