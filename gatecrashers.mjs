@@ -25,11 +25,11 @@ const server = http.createServer((request, response) => {
       if (AUTHORIZED_USERS[user] === pass) {
         // Security part ends here
 
-        request.on('data', async (data) => {
+        request.on('data', (data) => {
           //   const data = Buffer.concat(body).toString();
           const filePath = `./guests${url}.json`;
 
-          await fs.promises.writeFile(
+          fs.promises.writeFile(
             filePath,
             data.toString('utf8'),
             {
