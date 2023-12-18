@@ -11,72 +11,77 @@ const AUTHORIZED_USERS = {
 const server = http.createServer((request, response) => {
   const { method, url, headers } = request;
   response.setHeader('Content-Type', 'application/json');
-  console.log(method);
   if (method === 'POST' && url !== '/favicon.ico') {
     // Security part starts here
     console.log(request.headers);
     const authheader = request.headers.authorization;
-    if (!authheader) {
-      response.writeHead(401, {
-        'Content-Length': 0,
-        'WWW-Authenticate': 'Basic realm="Authorization Required"',
-      });
-      response.end();
-    }
+    if (authheader) {
+      if (!authheader) {
+        response.writeHead(401, {
+          'Content-Length': 0,
+          'WWW-Authenticate': 'Basic realm="Authorization Required"',
+        });
+        response.end();
+      }
 
-    const auth = Buffer.from(authheader.split(' ')[1], 'base64')
-      .toString()
-      .split(':');
-    const user = auth[0];
-    const pass = auth[1];
-    // console.log(auth[0])
-    // console.log(AUTHORIZED_USERS[user])
+      const auth = Buffer.from(authheader.split(' ')[1], 'base64')
+        .toString()
+        .split(':');
+      const user = auth[0];
+      const pass = auth[1];
+      // console.log(auth[0])
+      // console.log(AUTHORIZED_USERS[user])
 
-    // console.log(auth[1])
-    // console.log(pass)
+      // console.log(auth[1])
+      // console.log(pass)
 
-    if (AUTHORIZED_USERS[user] === pass) {
-      // Security part ends here
-      const body = [];
-      request.on('data', (chunk) => {
-        console.log(chunk);
-        body.push(chunk);
-      });
+      if (AUTHORIZED_USERS[user] === pass) {
+        // Security part ends here
+        request.on('data', async (data) => {
+          //   const data = Buffer.concat(body).toString();
+          const filePath = `./guests${url}.json`;
 
-      request.on('end', () => {
-        // kui viitsimist siis võib proovida ilma asyncita
-        const data = Buffer.concat(body).toString();
-        const filePath = `./guests${url}.json`;
+          try {
+            await fs.promises.writeFile(
+              filePath,
+              data,
+              {
+                encoding: 'utf8',
+                flag: 'w',
+              },
+              (err) => {
+                console.log(err);
+              }
+            );
+            response.writeHead(201, {
+              'Content-Length': Buffer.byteLength(
+                JSON.stringify(JSON.parse(data.toString('utf8')))
+              ),
+            });
+            response.end();
+          } catch (error) {
+            const serverFailedResponse = JSON.stringify({
+              error: 'server failed in catch',
+            });
+            response.writeHead(500, {
+              'Content-Length': Buffer.byteLength(serverFailedResponse),
+            });
+            response.end(serverFailedResponse);
+          }
+        });
 
-        try {
-          fs.promises.writeFile(filePath, data, {
-            encoding: 'utf8',
-            flag: 'w',
-          });
-          response.writeHead(201, {
-            'Content-Length': Buffer.byteLength(
-              JSON.stringify(JSON.parse(data.toString('utf8')))
-            ),
-          });
-          response.end(successResponse);
-        } catch (error) {
-          const serverFailedResponse = JSON.stringify({
-            error: 'server failed in catch',
-          });
-          response.writeHead(500, {
-            'Content-Length': Buffer.byteLength(serverFailedResponse),
-          });
-          response.end(serverFailedResponse);
-        }
-      });
-    } else {
-      // New else security error
-      response.writeHead(401, {
-        'Content-Length': 0,
-        'WWW-Authenticate': 'Basic realm="Authorization Required"',
-      });
-      response.end();
-      // End new else security error
+        // request.on('end', () => {
+
+        // });
+      } else {
+        // New else security error
+        response.writeHead(401, {
+          'Content-Length': 0,
+          'WWW-Authenticate': 'Basic realm="Authorization Required"',
+        });
+        response.end();
+        // End new else security error
+      }
     }
   } else if (method === 'POST' && url !== '/favicon.ico') {
     try {
