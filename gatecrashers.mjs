@@ -1,57 +1,66 @@
-import * as http from 'node:http';
+import * as http from 'http';
 import { writeFile } from 'fs/promises';
 import { Buffer } from 'node:buffer';
 
+// Create a local server to receive data from
 const server = http.createServer((request, response) => {
-  const { method, url } = request;
+  let statusCode = 200;
   response.setHeader('Content-Type', 'application/json');
-  // Security part starts here
-  const authheader = request.headers.authorization;
-  if (authheader) {
-    const auth = Buffer.from(authheader.split(' ')[1], 'base64')
-      .toString()
-      .split(':');
-    const user = auth[0];
-    const pass = auth[1];
-    if (
-      ['Caleb_Squires', 'Tyrique_Dalton', 'Rahima_Young'].includes(user) &&
-      pass === 'abracadabra'
-    ) {
-      let guest = request.url.slice(1);
-      let fileName = `guests/${guest}.json`;
-      let bodyReq = request.headers['body'];
-      writeFile(fileName, bodyReq)
-        .then(() => {
-          let bodyRes = bodyReq;
-          response.writeHead(200, {
-            'Content-Length': Buffer.byteLength(bodyRes),
-          });
-          response.end(bodyRes);
-        })
-        .catch((err) => {
-          if (err) {
-            let bodyRes = JSON.stringify({ error: 'Server Error' });
-            response.writeHead(500, {
-              'Content-Length': Buffer.byteLength(bodyRes),
-            });
-            response.end(bodyRes);
-            return;
-          }
-        });
-    }
-  } else {
-    let bodyRes = JSON.stringify({ error: 'Authorization Required%' });
-    response.writeHead(401, {
-      'Content-Length': Buffer.byteLength(bodyRes),
-    });
-    response.end(bodyRes);
-    return;
+  const errHandler = (err, statusCode, message) => {
+    let bodyRes = JSON.stringify({ error: message });
+    response
+      .writeHead(statusCode, {
+        'Content-Length': Buffer.byteLength(bodyRes),
+      })
+      .end(bodyRes);
+  };
+  let auth = basicAuth(request);
+  //console.log("auth", auth);
+  switch (auth) {
+    case 'no credentials':
+      errHandler('no credentials found', 401, 'no credentials found');
+      return;
+    case 'wrong credentials':
+      errHandler('wrong credentials', 401, 'Authorization Required%');
+      return;
   }
+  let guest = request.url.slice(1);
+  let fileName = `guests/${guest}.json`;
+  let bodyReq = request.headers['body'];
+  writeFile(fileName, bodyReq)
+    .then(() => {
+      let bodyRes = bodyReq;
+      response.writeHead(200, {
+        'Content-Length': Buffer.byteLength(bodyRes),
+      });
+      response.end(bodyRes);
+    })
+    .catch((err) => errHandler(err, 500, 'Server Error'));
 });
-// test
+
+function basicAuth(req) {
+  // check for basic auth header
+  if (
+    !req.headers.authorization ||
+    req.headers.authorization.indexOf('Basic ') === -1
+  ) {
+    return 'no credentials';
+  }
+  // verify auth credentials
+  const base64Credentials = req.headers.authorization.split(' ')[1];
+  const [username, password] = Buffer.from(base64Credentials, 'base64')
+    .toString()
+    .split(':');
+  const users = ['Caleb_Squires', 'Tyrique_Dalton', 'Rahima_Young'];
+  if (users.includes(username) && password === 'abracadabra') {
+    return 'ok';
+  }
+  return 'wrong credentials';
+}
+
 const port = 5000;
 const host = 'localhost';
-server.listen(port, host, () => {
-  console.log('Server on http://localhost:5000');
-});
-console.log(port);
+
+server.listen(port, host, () =>
+  console.log(`Server is running on http://${host}:${port}`)
+);
