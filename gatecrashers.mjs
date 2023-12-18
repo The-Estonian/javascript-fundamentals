@@ -54,3 +54,4 @@ const host = 'localhost';
 server.listen(port, host, () => {
   console.log('Server on http://localhost:5000');
 });
+console.log(port);
