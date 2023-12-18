@@ -16,14 +16,6 @@ const server = http.createServer((request, response) => {
     // Security part starts here
     const authheader = request.headers.authorization;
     if (authheader) {
-    }
-    if (!authheader) {
-      let bodyRes = { error: 'Authorization Required%' };
-      response.writeHead(401, {
-        'Content-Length': Buffer.byteLength(bodyRes),
-      });
-      response.end(bodyRes);
-    } else {
       const auth = Buffer.from(authheader.split(' ')[1], 'base64')
         .toString()
         .split(':');
@@ -46,19 +38,19 @@ const server = http.createServer((request, response) => {
             // Handle the error here
             console.error('Error:', err);
 
-            let bodyRes = JSON.stringify({ error: 'server failed in catch' });
+            let bodyRes = JSON.stringify({ error: 'Server Error' });
             response.writeHead(500, {
               'Content-Length': Buffer.byteLength(bodyRes),
             });
             response.end(bodyRes);
           });
-      } else {
-        let bodyRes = { error: 'Authorization Required%' };
-        response.writeHead(401, {
-          'Content-Length': Buffer.byteLength(bodyRes),
-        });
-        response.end(bodyRes);
       }
+    } else {
+      let bodyRes = { error: 'Authorization Required%' };
+      response.writeHead(401, {
+        'Content-Length': Buffer.byteLength(bodyRes),
+      });
+      response.end(bodyRes);
     }
   }
 });
