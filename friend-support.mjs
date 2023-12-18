@@ -25,12 +25,22 @@ let server = http.createServer((request, response) => {
         }
       });
     } catch (err) {
-      let data = JSON.stringify({ error: 'server failed' });
-      response
-        .writeHead(500, {
-          'Content-Length': Buffer.byteLength(data),
-        })
-        .end(data);
+      console.log(err);
+      if (err.code === 'ENOENT') {
+        let data = JSON.stringify({ error: 'guest not found' });
+        response
+          .writeHead(404, {
+            'Content-Length': Buffer.byteLength(data),
+          })
+          .end(data);
+      } else {
+        let data = JSON.stringify({ error: 'server failed' });
+        response
+          .writeHead(500, {
+            'Content-Length': Buffer.byteLength(data),
+          })
+          .end(data);
+      }
       // }
     }
   }
