@@ -39,6 +39,7 @@ const server = http.createServer((request, response) => {
       // Security part ends here
       const body = [];
       request.on('data', (chunk) => {
+        console.log(chunk);
         body.push(chunk);
       });
 
@@ -48,18 +49,14 @@ const server = http.createServer((request, response) => {
         const filePath = `./guests${url}.json`;
 
         try {
-          console.log('trying');
           fs.promises.writeFile(filePath, data, {
             encoding: 'utf8',
             flag: 'w',
-          }); // ta muidu sulgeb selle faili ja ei jõua lõpuni kirjutada
-          const successResponse = JSON.stringify(
-            JSON.parse(data.toString('utf8'))
-          );
-
-          console.log(successResponse);
+          });
           response.writeHead(201, {
-            'Content-Length': Buffer.byteLength(successResponse),
+            'Content-Length': Buffer.byteLength(
+              JSON.stringify(JSON.parse(data.toString('utf8')))
+            ),
           });
           response.end(successResponse);
         } catch (error) {
