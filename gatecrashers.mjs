@@ -15,11 +15,12 @@ const server = http.createServer((request, response) => {
   if (method === 'POST' && url !== '/favicon.ico') {
     // Security part starts here
     const authheader = request.headers.authorization;
+    if (authheader) {
+    }
     if (!authheader) {
-      let bodyRes = 'Authorization Required%';
+      let bodyRes = { error: 'Authorization Required%' };
       response.writeHead(401, {
         'Content-Length': Buffer.byteLength(bodyRes),
-        'Content-Type': 'text/plain',
       });
       response.end(bodyRes);
     } else {
@@ -52,10 +53,9 @@ const server = http.createServer((request, response) => {
             response.end(bodyRes);
           });
       } else {
-        let bodyRes = 'Authorization Required%';
+        let bodyRes = { error: 'Authorization Required%' };
         response.writeHead(401, {
           'Content-Length': Buffer.byteLength(bodyRes),
-          'Content-Type': 'text/plain',
         });
         response.end(bodyRes);
       }
