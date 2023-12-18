@@ -9,37 +9,22 @@ let server = http.createServer((request, response) => {
     try {
       // server.kill();
       fs.readFile('./guests' + request.url + '.json', 'utf8', (err, data) => {
-        try {
-          response
-            .writeHead(200, {
-              'Content-Length': Buffer.byteLength(data),
-            })
-            .end(data);
-        } catch (err) {
+        if (err) {
           let data = JSON.stringify({ error: 'guest not found' });
           response
             .writeHead(404, {
               'Content-Length': Buffer.byteLength(data),
             })
             .end(data);
-          // } else {
-          //   let data = JSON.stringify({ error: 'server failed' });
-          //   response
-          //     .writeHead(500, {
-          //       'Content-Length': Buffer.byteLength(data),
-          //     })
-          //     .end(data);
+        } else {
+          response
+            .writeHead(200, {
+              'Content-Length': Buffer.byteLength(data),
+            })
+            .end(data);
         }
       });
     } catch (err) {
-      // if (err.code === 'ENOENT') {
-      //   let data = JSON.stringify({ error: 'guest not found' });
-      //   response
-      //     .writeHead(404, {
-      //       'Content-Length': Buffer.byteLength(data),
-      //     })
-      //     .end(data);
-      // } else {
       let data = JSON.stringify({ error: 'server failed' });
       response
         .writeHead(500, {
