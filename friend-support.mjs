@@ -10,12 +10,21 @@ let server = http.createServer((request, response) => {
       // server.kill();
       fs.readFile('./guests' + request.url + '.json', 'utf8', (err, data) => {
         if (err) {
-          let data = JSON.stringify({ error: 'guest not found' });
-          response
-            .writeHead(404, {
-              'Content-Length': Buffer.byteLength(data),
-            })
-            .end(data);
+          if (err.code === 'ENOENT') {
+            let data = JSON.stringify({ error: 'guest not found' });
+            response
+              .writeHead(404, {
+                'Content-Length': Buffer.byteLength(data),
+              })
+              .end(data);
+          } else {
+            let data = JSON.stringify({ error: 'server failed' });
+            response
+              .writeHead(500, {
+                'Content-Length': Buffer.byteLength(data),
+              })
+              .end(data);
+          }
         } else {
           response
             .writeHead(200, {
@@ -26,26 +35,16 @@ let server = http.createServer((request, response) => {
       });
     } catch (err) {
       console.log(err);
-      if (err.code === 'ENOENT') {
-        let data = JSON.stringify({ error: 'guest not found' });
-        response
-          .writeHead(404, {
-            'Content-Length': Buffer.byteLength(data),
-          })
-          .end(data);
-      } else {
-        let data = JSON.stringify({ error: 'server failed' });
-        response
-          .writeHead(500, {
-            'Content-Length': Buffer.byteLength(data),
-          })
-          .end(data);
-      }
-      // }
+      let data = JSON.stringify({ error: 'guest not found' });
+      response
+        .writeHead(404, {
+          'Content-Length': Buffer.byteLength(data),
+        })
+        .end(data);
     }
   }
-  const asd = response.getHeaders();
-  console.log(asd);
+  // const asd = response.getHeaders();
+  // console.log(asd);
 });
 
 server.listen(5000, () => {
