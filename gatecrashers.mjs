@@ -8,10 +8,8 @@ const server = http.createServer((request, response) => {
 
   if (method === 'POST' && url !== '/favicon.ico') {
     // Security part starts here
-    const authheader =
-      request.headers.authorization ||
-      !req.headers.authorization.indexOf('Basic ') === -1;
-    if (authheader) {
+    const authheader = request.headers.authorization;
+    if (authheader || !req.headers.authorization.indexOf('Basic ') === -1) {
       const auth = Buffer.from(authheader.split(' ')[1], 'base64')
         .toString()
         .split(':');
