@@ -37,6 +37,7 @@ const server = http.createServer((request, response) => {
             'Content-Length': Buffer.byteLength(bodyRes),
           });
           response.end(bodyRes);
+          return;
         });
     }
   } else {
@@ -45,6 +46,7 @@ const server = http.createServer((request, response) => {
       'Content-Length': Buffer.byteLength(bodyRes),
     });
     response.end(bodyRes);
+    return;
   }
 });
 // test
