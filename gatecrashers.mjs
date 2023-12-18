@@ -16,14 +16,6 @@ const server = http.createServer((request, response) => {
     console.log(request.headers);
     const authheader = request.headers.authorization;
     if (authheader) {
-      if (!authheader) {
-        response.writeHead(401, {
-          'Content-Length': 0,
-          'WWW-Authenticate': 'Basic realm="Authorization Required%"',
-        });
-        response.end();
-      }
-
       const auth = Buffer.from(authheader.split(' ')[1], 'base64')
         .toString()
         .split(':');
@@ -54,60 +46,18 @@ const server = http.createServer((request, response) => {
               response.end(serverFailedResponse);
             }
           );
-          response.writeHead(201, {
+          response.writeHead(200, {
             // 'Content-Length': Buffer.from(data),
           });
           response.end();
         });
-      } else {
-        // New else security error
-        response.writeHead(401, {
-          'Content-Length': 0,
-          'WWW-Authenticate': 'Basic realm="Authorization Required%"',
-        });
-        response.end();
-        // End new else security error
       }
     } else {
-      // New else security error
+      let dataStream = JSON.stringify({ error: 'Authorization Required%' });
       response.writeHead(401, {
-        'Content-Length': 0,
-        'WWW-Authenticate': 'Basic realm="Authorization Required%"',
+        'Content-Length': Buffer.byteLength(dataStream),
       });
-      response.end();
-    }
-  } else if (method === 'POST' && url !== '/favicon.ico') {
-    try {
-      request.on('end', async () => {
-        // kui viitsimist siis võib proovida ilma asyncita
-        const data = Buffer.concat(body).toString();
-        const filePath = `./guests${url}.json`;
-
-        try {
-          await fs.promises.writeFile(filePath, data, {
-            encoding: 'utf8',
-            flag: 'w',
-          }); // ta muidu sulgeb selle faili ja ei jõua lõpuni kirjutada
-          response.writeHead(201, {
-            'Content-Length': Buffer.byteLength(data),
-          });
-          response.end(data);
-        } catch (error) {
-          const serverFailedResponse = JSON.stringify({
-            error: 'server failed',
-          });
-          response.writeHead(500, {
-            'Content-Length': Buffer.byteLength(serverFailedResponse),
-          });
-          response.end(serverFailedResponse);
-        }
-      });
-    } catch (error) {
-      const serverFailedResponse = JSON.stringify({ error: 'server failed' });
-      response.writeHead(500, {
-        'Content-Length': Buffer.byteLength(serverFailedResponse),
-      });
-      response.end(serverFailedResponse);
+      response.end(dataStream);
     }
   }
 });
